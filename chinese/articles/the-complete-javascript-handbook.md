@@ -1,6 +1,6 @@
 > * 原文地址：[The Complete JavaScript Handbook](the-complete-javascript-handbook)
 > * 原文作者：[Flavio Copes](https://www.freecodecamp.org/news/author/flavio/)
-> * 译者：
+> * 译者：dingjy94
 > * 校对者：
 
 ![The Complete JavaScript Handbook](https://cdn-media-1.freecodecamp.org/images/1*2YiRWfZk40lOe81wcyEVjA.png)
@@ -13,11 +13,21 @@ Learn all you need to know about JavaScript!
 
 Note: you can get a  [PDF, ePub, or Mobi][1]  version of this handbook for easier reference, or for reading on your Kindle or tablet.
 
+![JavaScript完全指南](https://cdn-media-1.freecodecamp.org/images/1*2YiRWfZk40lOe81wcyEVjA.png)
+
+在当下，JavaScript是世界上最受欢迎的编程语言之一，并且它的使用不仅仅局限于前端开发领域。近几年冉冉升起的Node.js为JavaSCript解锁了后端开发领域——一个曾经被Java, Ruby, Python, PHP以及一些更传统的服务器端语言主宰的领域。
+
+这篇JavaScript完全指南遵循80/20原则，既使用20%的时间来学习80%的JavaScript知识。
+
+这篇文章会带你学习你所需要知道的所有的JavaScript知识！
+
+提示: 你可以获取一份[PDF, ePub或者Mobi][1]版本用于快速翻阅或者在Kindle或平板设备上的阅读。
+
 #### Introduction
 
 JavaScript is one of the most popular programming languages in the world. Created 20 years ago, it’s gone a very long way since its humble beginnings.
 
-Being the first, and the only scripting language that was supported natively by web browsers, it simply stuck.
+Being the first, and the only scripting language that was supported natively by web browsers, it simply stuck.（stuck不知道怎么翻译恰当）
 
 In the beginnings, it was not nearly as powerful as it is today, and it was mainly used for fancy animations ? and the marvel known at the time as Dynamic HTML (D[HTML)][2].
 
@@ -29,6 +39,23 @@ JavaScript is now widely also used outside the browser. The rise of Node.js in t
 
 JavaScript is now also the language powering databases and many more applications. It’s even possible to develop embedded applications, mobile apps, TV sets apps and much more. What started as a tiny language inside the browser is now the most popular language in the world.
 
+## 简介
+
+JavaScript是世界上最受欢迎的编程语言之一，在它诞生之后的这20年里，它走过了很长的一条道路。
+
+作为最早的也是唯一一个被浏览器原生支持的脚本语言，它当初有很多的问题。
+
+最初，它的功能远远不如如今这么强大，并且它最初的主要用途仅仅是用于制作有趣的动画以及用于当时被称为(DHTML)[2]的新奇事物。
+
+随着时代的发展，网络设备需要越来越多的功能。而为了满足网络这个在世界上应用广泛的生态系统的需求，的的JavaScript也有 _责任_ 去不断的成长。
+
+很多功能通过浏览器API被引入了网络设备，但是JavaScript语言本省也成长了许多。
+
+在当下，JavaScript的使用已经不仅仅局限于前端开发领域。近几年冉冉升起的Node.js为JavaSCript解锁了后端开发领域——一个曾经被Java, Ruby, Python, PHP以及一些更传统的服务器端语言主宰的领域。
+
+
+JavaScript如今还被用于驱动数据库系统以及许多其他的应用。我们甚至可以使用它来开发嵌入式应用，移动app，智能电视app和很多其他的应用。这个起源于浏览器脚本语言的的“小”语言如今已经是世界上最受欢迎的编程语言。
+
 #### A basic definition of JavaScript
 
 JavaScript is a programming language that is:
@@ -38,11 +65,21 @@ JavaScript is a programming language that is:
 -   **Dynamically typed**: A variable does not enforce a type. You can reassign any type to a variable, for example assigning an integer to a variable that holds a string.
 -   **Weakly typed**: As opposed to strong typing, weakly (or loosely) typed languages do not enforce the type of an object. This allows more flexibility but denies us type safety and type checking (something that TypeScript and Flow aim to improve)
 -   **Interpreted**: It’s commonly known as an interpreted language, which means that it does not need a compilation stage before a program can run, as opposed to C, Java or Go for example. In practice, browsers do compile JavaScript before executing it, for performance reasons, but this is transparent to you as there is no additional step involved.
--   **Multi-paradigm**: The language does not enforce any particular programming paradigm, unlike Java for example which forces the use of object-oriented programming, or C that forces imperative programming.  
+-   **Multi-paradigm**: The language does not enforce any particular programming paradigm, unlike Java for example which forces the use of object-oriented programming, or C that forces imperative programming.
     You can write JavaScript using an object-oriented paradigm, using prototypes and the new (as of ES6) classes syntax. You can write JavaScript in functional programming style, with its first-class functions, or even in an imperative style (C-like).
 
 In case you’re wondering,  **JavaScript has nothing to do with Java**, it’s an unfortunate name choice but we have to live with it.
 
+#### JavaScript的基本定义
+作为一种编程语言，JavaScript有如下特性:
+- **高级语言**: 它使用了抽象化的手段，使得你不必在意它在机器的运行细节。它使用垃圾回收机制来自动管理内存，因此你可以专注于你的代码而不必花心思管理内存，同时提供了一些内置的构造器使你可以更好地使用功能强大的变量和对象。
+- **动态语言**: 与静态编程语言相反，动态语言会在运行时进行很多静态语言在编译阶段进行的操作。这既有优点也有缺点，给与了我们诸如动态类型、晚绑定、反射机制、函数式编程、可在运行时变更的对象、闭包等强大的特性。
+- **动态类型**: 变量没有固定的类型，因此你可以重新赋予一个变量任何类型，比如你可以将一个本来存储字符串的变量重新赋值为整型。
+- **弱类型**: 与强类型相反，弱类型的编程语言并不会为一个对象强制规定类型。这个特点给我们带来了更高的自由度，但是也使我们无法保证类型安全和进行类型检查(实现这些正是TypeScript和Flow的目标)。
+- **解释型语言**: 普遍意义上，JavaScript被认为是一种解释型语言，这意味着它不需要像诸如C, Java或者Go那样在程序运行之前需要一个编译阶段。实际上，为了提高性能，浏览器会在执行JavaScript程序之前进行编译，但这个过程由于并不包括其他步骤，因此对于开发者是透明的。
+- **多范式**: 这个语言本身没有强制规定任何的编程范式，这点不像诸如Java会强制使用面向对象编程或C那样规定使用命令式编程。你既可以利用原型和新的(ES6)类语法来遵循面向对象编程的规则进行编程，也可以使用函数式编程的风格，甚至可以使用像C语言那种命令式的风格。
+
+以防万一你会误会，**JavaScript和Java没有任何关系**, 这只是个不太恰当的命名选择，但我们也只能接受它。
 #### JavaScript versions
 
 Let me introduce the term  **ECMAScript**  here. We have a complete guide dedicated to ECMAScript where you can dive into it more, but to start with, you just need to know that ECMAScript (also called  **ES**) is the name of the JavaScript standard.
@@ -54,6 +91,18 @@ For a very long time, the version of JavaScript that all browsers ran was ECMASc
 Since then, the ones in charge decided to release one version per year, to avoid having too much time idle between releases, and have a faster feedback loop.
 
 Currently, the latest approved JavaScript version is ES2017.
+
+#### JavaScript的版本
+
+让我在这里介绍一下介绍一下**ECMAScript**。如果你愿意深入研究，我们有一份完整的手册帮助你了解ECMAScript，但是现在你只需要知道ECMAScript(也被称作**ES**)是JavaScript标准的名字。
+
+JavaScript是这份标准的实现。这正是你会听到ES6, ES2015, ES2016, ES2017, ES2018这些词的原因。
+
+在过去的很长一段时间，所有浏览器运行的JavaScript版本都是ECMAScript3。 第四版因为特征蔓延(他们尝试在这个版本中一次性加入过多新特征)而被废除。在ES5的时候JavaScript有过一次大的更新，ES2015(也被称作ES6)也是一次大的版本更新。
+
+从ES6之后，相关的负责人(ECMA-TC39)决定通过每年发布一个新版本来缩短版本更新的时间间隔，同时更高效的获得反馈。
+
+现在，最新通过的JavaScript版本是ES2017(译者翻译此文的时候TC39已经发布了ES2019)。
 
 ### ECMASCRIPT
 
@@ -126,6 +175,76 @@ ES.Next is a name that always indicates the next version of JavaScript.
 
 At the time of writing, ES9 has been released, and  **ES.Next is ES10**
 
+### ECMASCRIPT
+
+当你阅读JavaScript相关的资料时，你会不可避免的遇到下列词汇:
+
+-   ES3
+-   ES5
+-   ES6
+-   ES7
+-   ES8
+-   ES2015
+-   ES2016
+-   ES2017
+-   ECMAScript 2017
+-   ECMAScript 2016
+-   ECMAScript 2015
+
+这些词汇代表什么意思呢？
+
+它们都是指代一个名为ECMAScript的**标准**。
+
+ECMAScript是**JavaScript所基于的标准**，我们常用它的缩写**ES**来称呼它。
+
+除了JavaScirpt以外，也有一些语言实现了ECMAScript标准，包括:
+
+- _ActrionScript_(Flash的脚本语言)，由于从2020年以后官方将不再维护Flash，这个语言已经不太流行了。
+- _JScript_(微软开发的JavaScript的方言)，在当时只有网景浏览器支持JavaScript，而且浏览器大战正处于火热状态，微软不得不为了IE浏览器开发一个自己的版本的脚本语言
+
+但是当然，JavaScript是ES的实现中**最受欢迎**和被广泛运用的语言。
+
+为什么起了这么一个奇怪的名字呢？`Ecma国际`是一个位于瑞士的负责制定国际标准的标准委员会。
+
+当JavaScript诞生时，网景公司和Sun MicroSystems将它展示给了Ecma，于是Ecma将其命名为ECMA-262，也就是**ECMAScript**。
+
+[这篇网景公司和Sum Microsystems发布的文章][3]可以帮助你明白这么命名的原因。[根据维基百科][4]所述，这其中也可能有与标准委会一员的微软的法律和商标纠纷的原因。
+
+在IE9之后，微软停止称呼IE内置的支持语言为JScript并且开始称呼它为JavaScript(至少我已经不能在IE中找到任何关于JScript的信息)。
+
+所以在201x年，JavaScript是唯一一个广受欢迎的实现了ECMAScript的语言。
+
+#### 当前的ECMAScript版本
+
+当前版本为**ECMA2018**，于2018年6月发布。(译者翻译此文时已经来到了ECMA2019版本)。
+
+#### 什么时候发布下一个版本
+
+按照惯例，JavaScript版本于夏天完成标准化，所以我们可以期待**ECMAScript 2019**将于2019夏天被发布，但这只是预测。
+
+#### 什么事TC39
+
+TC39是负责改进JavaScript的委员会。
+
+委员会成员包括使用JavaScript的公司和浏览器供应商，包括Mozilla，谷歌，脸书，苹果，微软，英特尔，PayPal，Salesforce和其他一些公司。
+
+每一个标准版本的发布都要经过说个阶段，[在这里有这方面的详细解读][5]。
+
+#### ES版本
+我发现时而用版本号时而用年份来称呼ES版本的原因非常令人困惑。
+
+在ES2015之前，人们用版本号来识别ESMAScript版本。所以ES5是用来2009年更新发布的ECMAScript标准的官方名字。
+
+所以为什么会有现在这种混乱的局面呢？在制定ES2015的过程中，新标准的官方名字从ES6变为了ES015，但是由于这个改动是后进行的，人们还是会使用ES6来称呼它，TC39委员会也没有强调过这个修改之后的名字。于是_人们仍然用版本号来称呼ES的发行版本_。
+
+这个表格可以让你不那么困惑:
+
+![](https://cdn-media-1.freecodecamp.org/images/mSPPXfnrRpiQAw8tZPsLgAqvMnzaP7HxSeKz)
+
+ES.Next代指下一个JavaScript版本。
+
+在我编写该文时，ES9已经发布，**ES.Next为ES10**。
+
 ### The ES6 improvements
 
 ECMAScript 2015, also known as ES6, is a fundamental version of the ECMAScript standard.
@@ -156,6 +275,35 @@ The most important changes in ES2015 include:
 -   Map and Set
 
 I’ll cover each of them in a dedicated section here in this guide. So let’s get started.
+
+### ES6带来的提升
+ECMAScript2016，又名ES6，是一个ECMAScript标准的基础版本。
+
+**这一版发布时候距上一个标准版本ECMAScript5.1的发布已经过去了四年**，该版本同时还标志着命名方式从版本号变为了年份。
+
+因此，**它不应该被称作ES6**(虽然每个人都这么称呼它)，而是应该被称作ES2015。
+
+> _相关人员花费了十年时间(从1999到2009)来制定ES5，因此这也是一个基础切非常重要的语言版本升级。但是这已经是过去时了，现在已经没有什么必要去讨论ES5之前的代码是如何运作得了。_
+
+鉴于从ES5.1到ES6花费了如此之久的时间，这一版本包括了大量的重要的新特性以及关于开发JavaScript程序的最佳实践的变化。如果你想知道ES2015多么重要，你只需要知道这次版本更新使得指导文档从250页变成了超过600页。
+
+ES2015的最重要的变化包括:
+- 箭头函数
+- Promises
+- 生成器
+- `let`和`const`
+- 类
+- 模块
+- 多行字符串
+- 模板字符串
+- 默认参数
+- 扩展运算符
+- 解构赋值
+- 对象字面量
+- for..of循环
+- 字典与集合
+
+我将在本文中用相应的小节来介绍它们。让我们开始吧！
 
 #### Arrow Functions
 
@@ -193,6 +341,38 @@ The  `this`  scope with arrow functions is inherited from the context.
 
 With regular functions,  `this`  always refers to the nearest function, while with arrow functions this problem is removed, and you won't need to write  `var that = this`  ever again.
 
+#### 箭头函数
+
+箭头函数改变了大部分JavaScript代码的外观(以及运作方式)。
+
+从观感上看，这是一个简洁且受人欢迎的改变，从
+
+```JavaScript
+const foo = function foo() { //... }
+```
+变为了
+```JavaScript
+const foo = () => { //... }
+```
+
+如果这个函数的主体只有一行，那么只需要
+```JavaScript
+const foo = () => doSomething()
+```
+
+如果你只有一个参数，你可以这么写
+```JavaScript
+const foo = param => doSomething(param)
+```
+
+这并不是一个破坏性的变化，常规的函数将会一如既往的运作。
+
+#### 新的`_this_`作用域
+
+箭头函数的`this`作用域将从上下文继承。
+
+在常规的函数中，`this`经常指向就近的函数，而使用箭头函数可以避免这个问题。因此，你不必再写`var that = this`了。
+
 #### Promises
 
 Promises allow us to eliminate the famous “callback hell”, although they introduce a bit more complexity (which has been solved in ES2017 with  `async`, a higher level construct).
@@ -208,6 +388,28 @@ setTimeout(function() {  console.log('I promised to run after 1s')  setTimeout(f
 as
 
 ```
+const wait = () => new Promise((resolve, reject) => {  setTimeout(resolve, 1000)})
+```
+
+```
+wait().then(() => {  console.log('I promised to run after 1s')  return wait()}).then(() => console.log('I promised to run after 2s'))
+```
+
+#### Promises
+
+Promises使我们可以避免著名的“回调地狱”，虽然也仍然存在着引入较高复杂度的问题(这一点在ES2017中随着`async`的引入得到了解决)。
+
+在ES2015出现之前，Promises已经被JavaScript开发者们广泛地使用，但不同的类库(例如jQuery, q, deferred.js, vow...)对此有着不同的实现。新的标准通过博取众家之所长实现了这个功能。
+
+通过使用Promises，你可以将如下代码
+
+```JavaScript
+setTimeout(function() {  console.log('I promised to run after 1s')  setTimeout(function() {    console.log('I promised to run after 2s')  }, 1000)}, 1000)
+```
+
+重写为
+
+```JavaScript
 const wait = () => new Promise((resolve, reject) => {  setTimeout(resolve, 1000)})
 ```
 
@@ -288,6 +490,79 @@ and in return we get
 
 As the iteration is done (no more  `yield`  keywords found), we just return  `(input * doubleThat * another)`  which amounts to  `10 * 14 * 100`.
 
+#### 生成器
+生成器是一种可以暂停自身的运行，并允许其他代码在这段时间运行，然后在之后继续从暂停的地方运行的特殊的函数。
+
+使用生成器的代码可以在需要等待的时候停下来进行等待，在这段时间其他的“在队列中”的代码可以运行，但是它保留当“等待的部分已经完成”时继续运行接下来的代码的权利。
+
+所有这些功能都是借助于一个简单的关键词`yield`。当一个生成器包含这个关键词时，会暂停运行代码。
+
+一个生成器函数可以包含多个`yield`关键词，这样就会多次暂停。同时生成器函数使用`*function`关键词来进行识别。请不要把这个关键词和C, C++或者Go这些底层语言中的指针弄混。
+
+生成器使得两种全新的JavaScript编程范式成为可能:
+
+- 当生成器运行时进行生成器函数与外部代码的双向交流
+- 不会冻结你的代码的超长生命周期的while循环
+
+下面是一个可以解释生成器原理的例子。
+
+```
+function *calculator(input) {    var doubleThat = 2 * (yield (input / 2))    var another = yield (doubleThat)    return (input * doubleThat * another)}
+```
+
+我们用如下代码进行初始调用:
+
+```
+const calc = calculator(10)
+```
+
+然后我们就可以开始对我们的生成器进行迭代了:
+
+```
+calc.next()
+```
+
+这段新的迭代开始运行迭代器。这段代码会返回当前的`this`对象:
+
+```
+{  done: false  value: 5}
+```
+
+实际发生的情况如下: 这段代码开始调用这个函数，并将`input = 10`传入生成器的构造函数。生成器会运行直到代码运行到`yield`，然后生成器就会返回`yield`的内容: `input / 2 = 5`。因此我们会得到5这个返回值，以及一个表示迭代器没有完成的标识(也就是说函数只是暂停了)。
+
+在第二次迭代中我们传入`7`:
+
+```
+calc.next(7)
+```
+
+然后我们就会得到:
+
+```
+{  done: false  value: 14}
+```
+
+`7`会作为`doubleThat`的参数。
+
+> _重点: 你可能会认为`input / 2`才是当前的参数，但这其实是第一个迭代的返回值。我们现在跳过这部分，然后使用新的输入值`7`，然后将它与2相乘。_
+
+然后代码就运行到了第二个yield，这里会返回`doubleThat`的值，也就是`14`。
+
+在下一个也就是最后一个迭代中，我们传入100:
+
+```
+calc.next(100)
+```
+
+我们会得到
+
+```
+{  done: true  value: 14000}
+```
+
+由于迭代已经结束了(没有更多的`yield`关键词了)，我们只需要返回 `(input * doubleThat * another)`也就是`10 * 14 * 100`的值就可以了。
+
+
 #### `let`  and  `const`
 
 `var`  is traditionally  **function scoped**.
@@ -301,6 +576,20 @@ This means that declaring  `let`  variables in a for loop, inside an if or in a 
 In JavaScript moving forward, you’ll see little to no  `var`  declarations any more, just  `let`and  `const`.
 
 `const`  in particular, maybe surprisingly, is  **very widely used**  nowadays with immutability being very popular.
+
+#### `let`和`const`
+
+`var`的作用域是传统的**函数作用域**。
+
+`let`是一个全新的用于声明变量的关键词，它的作用域是**模块作用域**。
+
+这意味着当你使用`let`来声明一个变量时，如果它位于一个循环，条件或者一个模块(大括号中)时，这个变量不会"逃出"这个模块，而使用`var`的话会将变量上升到整个函数的作用域中。
+
+`const`是不可更改的`let`。
+
+随着JavaScript的发展，你将逐渐看到`var`声明的变量不断减少并消失，只剩下`let`和`const`。
+
+可能会让你感到意外的是，随着不可修改性被越来越多的应用，`const`被**广泛应用**于现实的代码中。
 
 #### Classes
 
@@ -328,13 +617,46 @@ The above program prints “_Hello, I am Tom Cruise. I am an actor._”
 
 Classes do not have explicit class variable declarations, but you must initialize any variable in the constructor.
 
+#### 类
+传统上，JavaScript是唯一一个使用原型链继承的主流语言。从类继承语言转过来的程序员们经常会对此感到困惑，但是ES2015引入了类。这只是一个基于JavaScript原有语法实现的语法糖，但这改变了我们构建JavaScript程序的方式。
+
+现在，JavaScript中的继承变得非常简单，而且也与其他的面向对象语言更加相似:
+
+```
+class Person {  constructor(name) {    this.name = name  }
+```
+
+```
+  hello() {    return 'Hello, I am ' + this.name + '.'  }}
+```
+
+```
+class Actor extends Person {  hello() {    return super.hello() + ' I am an actor.'  }}
+```
+
+```
+var tomCruise = new Actor('Tom Cruise')tomCruise.hello()
+```
+
+这段程序会打印出"_Hello, I am Tom Cruise. I am an actor._"。
+
+类中并没有显示的类变量声明，但你需要在构造函数中初始化所有的变量。
+
 #### Constructor
 
 Classes have a special method called  `constructor`  which is called when a class is initialized via  `new`.
 
+#### 构造器
+
+类中有一个特殊的`constructor`方法，程序在使用`new`关键词初始化类时会调用这个构造器方法。
+
 #### Super
 
 The parent class can be referenced using  `super()`.
+
+#### Super
+
+子类可以通过使用`super()`来调用父类。
 
 #### Getters and setters
 
@@ -349,6 +671,21 @@ Setters are written in the same way:
 ```
 class Person {  set age(years) {    this.theAge = years  }}
 ```
+
+#### Getters和setters
+
+我们可以用如下方法定义一个属性的getter
+```
+class Person {  get fullName() {    return `${this.firstName} ${this.lastName}`  }}
+```
+
+也可以用同样的方式定义setter
+
+
+```
+class Person {  set age(years) {    this.theAge = years  }}
+```
+
 
 #### Modules
 
@@ -372,6 +709,31 @@ import * from 'mymodule'import React from 'react'import { React, Component } fro
 
 You can write modules and export anything to other modules using the  `export`keyword:
 
+```
+export var foo = 2export function bar() { /* ... */ }
+```
+
+#### 模块
+
+在ES2015出现之前，至少有三种互相竞争的模块化标准，这造成了JavaScript社区的割裂:
+
+- AMD
+- RequireJS
+- CommonJS
+
+ES2015为模块化带来了标准的形式。
+
+#### 导入模块
+
+模块的导入通过`import ... from ...` 这个结构:
+
+```
+import * from 'mymodule'import React from 'react'import { React, Component } from 'react'import React as MyLibrary from 'react'
+```
+
+#### 导出模块
+
+你可以编写模块并且通过`export`关键词导出:
 ```
 export var foo = 2export function bar() { /* ... */ }
 ```
@@ -412,9 +774,53 @@ Compare how we used to do multiline strings pre-ES2015:
 var str = 'One\n' +'Two\n' +'Three'
 ```
 
+#### 模板字符串
+
+模板字符串是一种新的创建字符串的方式:
+
+```
+const aString = `A string`
+```
+
+通过使用`${a_variable}`，提供了一种把表达式嵌入字符串中，高效地在字符串中插入值得语法:
+
+```
+const var = 'test'const string = `something ${var}` //something test
+```
+
+你可以使用更加复杂的表达式:
+
+```
+const string = `something ${1 + 2 + 3}`const string2 = `something ${foo() ? 'x' : 'y' }`
+```
+
+同时字符串可以换行:
+
+```
+const string3 = `Heythis
+```
+
+```
+stringis awesome!`
+```
+
+作为比较，在ES2015之前的版本，我们需要如下方法使用多行字符串:
+
+```
+var str = 'One\n' +'Two\n' +'Three'
+```
+
 #### Default parameters
 
 Functions now support default parameters:
+
+```
+const foo = function(index = 0, testing = true) { /* ... */ }foo()
+```
+
+#### 默认参数
+
+函数现在支持默认参数:
 
 ```
 const foo = function(index = 0, testing = true) { /* ... */ }foo()
@@ -893,7 +1299,7 @@ This new feature extends this concept to all Unicode characters introducing  `\p
 Any unicode character has a set of properties. For example,  `Script`  determines the language family,  `ASCII`  is a boolean that's true for ASCII characters, and so on. You can put this property in the graph parentheses, and the regex will check for that to be true:
 
 ```
-/^\p{ASCII}+$/u.test('abc')   //✅/^\p{ASCII}+$/u.test('ABC@')  //✅/^\p{ASCII}+$/u.test('ABC?') //❌ 
+/^\p{ASCII}+$/u.test('abc')   //✅/^\p{ASCII}+$/u.test('ABC@')  //✅/^\p{ASCII}+$/u.test('ABC?') //❌
 ```
 
 `ASCII_Hex_Digit`  is another boolean property, that checks if the string only contains valid hexadecimal digits:
@@ -909,7 +1315,7 @@ There are many other boolean properties, which you just check by adding their na
 ```
 
 ```
-/^\p{Emoji}+$/u.test('H')   //❌/^\p{Emoji}+$/u.test('??') //✅  
+/^\p{Emoji}+$/u.test('H')   //❌/^\p{Emoji}+$/u.test('??') //✅
 ```
 
 `In addition to those binary properties, you can check any of the unicode character properties to match a specific value. In this example, I check if the string is written in the Greek or Latin alphabet:`
@@ -4166,7 +4572,7 @@ delete Object.prototype(  //false
 `There is some weirder syntax that you can use to create an IIFE, but it’s very rarely used in the real world, and it relies on using  _any_  unary operator:`
 
 ```
-;-(function() {  /* */})() 
+;-(function() {  /* */})()
 ```
 
 ```
