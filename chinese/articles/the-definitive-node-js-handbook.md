@@ -1,77 +1,136 @@
 > -   原文地址：[The definitive Node.js handbook](https://www.freecodecamp.org/news/the-definitive-node-js-handbook-6912378afc6e/)
 > -   原文作者：[Flavio Copes](https://www.freecodecamp.org/news/author/flavio/)
-> -   译者：
+> -   译者：blackcai
 > -   校对者：
 
-![The definitive Node.js handbook](https://cdn-media-1.freecodecamp.org/images/1*7F50Qc-ysFgy6tCjUyruTA.jpeg)
+![Node.js 权威手册](https://cdn-media-1.freecodecamp.org/images/1*7F50Qc-ysFgy6tCjUyruTA.jpeg)
 
 Note: you can get a [PDF, ePub, or Mobi][1] version of this handbook for easier reference, or for reading on your Kindle or tablet.
 
+注意：你可以获取本手册的 [PDF, ePub, or Mobi][1] 版本以方便在你的 Kindle 或者平板电脑上阅读。
+
 ### Introduction to Node.js
+
+### Node.js 简介
 
 This handbook is a getting started guide to Node.js, the server-side JavaScript runtime environment.
 
+本手册是服务端 JavaScript 运行时环境 Node.js 的入门指南。
+
 #### Overview
+
+#### 概述
 
 Node.js is a **runtime environment for JavaScript** that runs on the **server**.
 
+Node.js 是一种运行在服务端的 JavaScript 运行时环境。
+
 Node.js is open source, cross-platform, and since its introduction in 2009, it got hugely popular and now plays a significant role in the web development scene. If GitHub stars are one popularity indication factor, having 58000+ stars means being very popular.
+
+Node.js 是开源、跨平台的，自2009年问世以来，已广受欢迎，并且在 Web 开发领域中扮演着重要的角色。如果 GitHub 星标是一个受欢迎程度指标，那么拥有 75800+ 星标意味着非常受欢迎。
 
 Node.js runs the V8 JavaScript engine, the core of Google Chrome, outside of the browser. Node.js is able to leverage the work of the engineers that made (and will continue to make) the Chrome JavaScript runtime blazing fast, and this allows Node.js to benefit from the huge performance improvements and the Just-In-Time compilation that V8 performs. Thanks to this, JavaScript code running in Node.js can become very performant.
 
+Node.js 运行在 Google Chrome 核心 V8 JavaScript 引擎上且位于浏览器之外。Node.js 能够利用工程师的工作，使 Chrome JavaScript 运行时变得（并且持续）非常快速，这允许 Node.js 从 V8 执行的巨大性能改进和实时编译中获益，多亏了这点，在 Node.js 中运行的 JavaScript 代码可以变的非常高效。
+
 A Node.js app is run by a single process, without creating a new thread for every request. Node provides a set of asynchronous I/O primitives in its standard library that will prevent JavaScript code from blocking and generally, libraries in Node.js are written using non-blocking paradigms, making a blocking behavior an exception rather than the normal.
+
+Node.js 应用程序通过单进程运行，而不是为每个请求创建一个新的线程。Node 在它的标准库中提供一套异步的 I/O 原语，这些原语将防止 JavaScript 代码阻塞，在通常情况下，Node.js 的库是使用非阻塞范式编写，使阻塞行为成为异常而不是正常的行为。
 
 When Node.js needs to perform an I/O operation, like reading from the network, access a database or the filesystem, instead of blocking the thread Node.js will resume the operations when the response comes back, instead of wasting CPU cycles waiting.
 
+当 Node.js 需要执行 I/O 操作时，比如从网络读取、访问数据库或文件系统，而不是阻塞线程，当响应返回的时候 Node.js 将会恢复操作，而不是浪费 CPU 周期等待。
+
 This allows Node.js to handle thousands of concurrent connections with a single server without introducing the burden of managing threads concurrency, which would be a major source of bugs.
+
+这使得 Node.js 可以在一台服务器上处理成千上万的并发连接，而不会带来管理线程并发性的负担，这将是一个主要的 bug 来源。
 
 Node.js has a unique advantage because millions of frontend developers that write JavaScript for the browser are now able to run the server-side code and frontend-side code without the need to learn a completely different language.
 
+Node.js 有一个独特的优势，因为数百万的为浏览器编写 JavaScript 的前端开发人员现在能够运行服务端代码和前端代码而无需学习完全不同的语言。
+
 In Node.js the new ECMAScript standards can be used without problems, as you don’t have to wait for all your users to update their browsers — you are in charge of deciding which ECMAScript version to use by changing the Node.js version, and you can also enable specific experimental features by running Node with flags.
 
+新的 ECMAScript 标准在 Node.js 中使用毫无问题，因为你不必等待所有用户更新浏览器--你负责通过修改 Node.js 版本来决定使用哪个 ECMAScript 版本，还可以通过运行带有标志的节点来启用特定的实验功能。
+
 #### It has a huge number of libraries
+#### 它有大量的库
 
 With its simple structure, the node package manager ([npm][2]) helped the ecosystem of Node.js proliferate. Now the [npm registry][3] hosts almost 500,000 open source packages you can freely use.
 
+Node 包管理器[npm][2] 通过其简单的结构使得 Node.js 生态系统激增。现在 [npm registry][3] 主机托管了近 500000 个开源包，并且你可以自由使用。
+
 ### A sample Node.js application
 
+### Node.js 应用程序示例
+
 The most common example Hello World of Node.js is a web server:
+
+最常见的 Node.js 的 Hello World 示例是 Web 服务器：
 
 ```
 const http = require('http')
 ```
 
 ```plain
-const hostname = '127.0.0.1'const port = 3000
+const hostname = '127.0.0.1'
+const port = 3000
 ```
 
 ```
-const server = http.createServer((req, res) => {  res.statusCode = 200  res.setHeader('Content-Type', 'text/plain')  res.end('Hello World\n')})
+const server = http.createServer((req, res) => {
+    res.statusCode = 200
+    res.setHeader('Content-Type', 'text/plain')
+    res.end('Hello World\n')
+})
 ```
 
 ```
-server.listen(port, hostname, () => {  console.log(`Server running at http://${hostname}:${port}/`)})
+server.listen(port, hostname, () => {
+    console.log(`Server running at http://${hostname}:${port}/`)
+})
 ```
 
 To run this snippet, save it as a `server.js` file and run `node server.js` in your terminal.
 
+若要运行此代码片段，需要将这个文件另存为 'server.js' 并且在你的终端运行 'node server.js'。
+
 This code first includes the Node.js `http` [module][4].
+
+这段代码首先包含了 Node.js 的 'http' [模块][4]。
 
 Node.js has an amazing [standard library][5], including a first-class support for networking.
 
+Node.js 有一个惊人的 [标准库][5]，包括一流的网络支持。
+
 The `createServer()` method of `http` creates a new HTTP server and returns it.
+
+'http' 的 'createServer' 方法创建了一个新的 HTTP 服务并且返回了它。
 
 The server is set to listen on the specified port and hostname. When the server is ready, the callback function is called, in this case informing us that the server is running.
 
+服务器在指定的端口和主机名上设置监听。当服务器准备就绪时，将调用回调函数，在本例中通知我们服务器正在运行。
+
 Whenever a new request is received, the `request` [event][6] is called, providing two objects: a request (an `[http.IncomingMessage][7]`object) and a response (an `[http.ServerResponse][8]`object).
+
+每当接收到新的请求时，都会调用 `request` [event][6]，（这个方法）提供两个对象：一个请求（一个 `[http.IncomingMessage][7]` 对象）和一个响应（一个 `[http.ServerResponse][8]` 对象）
 
 These 2 objects are essential to handle the HTTP call.
 
+这两个对象是处理 HTTP 调用必需的。
+
 The first provides the request details. In this simple example, this is not used, but you could access the request headers and request data.
+
+第一个提供了请求的详细信息。在这个简单的示例中，不使用此选项，但你可以访问请求头和请求数据。
 
 The second is used to return data to the caller.
 
+第二个用于向访客返回数据。
+
 In this case with:
+
+在这种情况下：
+
 
 ```
 res.statusCode = 200
@@ -79,7 +138,11 @@ res.statusCode = 200
 
 We set the `statusCode` property to `200`, to indicate a successful response.
 
+我们设置 `statusCode` 的属性为 `200` 来表明这是一个成功的请求。
+
 We set the Content-Type header:
+
+我们设置 Content-Type 头：
 
 ```
 res.setHeader('Content-Type', 'text/plain')
@@ -87,114 +150,204 @@ res.setHeader('Content-Type', 'text/plain')
 
 ……and we end close the response, adding the content as an argument to `end()`:
 
+……并且我们可以关闭请求，将内容作为参数添加到 `end()`
+
 ```
 res.end('Hello World\n')
 ```
 
 ### Node.js frameworks and tools
 
+### Node.js 框架和工具
+
 Node.js is a low-level platform. To make things easier and more interesting for developers, thousands of libraries were built upon Node.js.
+
+Node.js 是一个底层平台。为了让开发人员做事情更简单和更有趣，数以千计的库被建立在 Node.js 上。
 
 Many of those established over time as popular options. Here is a non-comprehensive list to the ones I consider very relevant and worth learning:
 
+随着时间的流逝，其中许多已经变成受欢迎的选择。以下是我认为非常有意义且值得学习的非全面的列表：
+
 -   [**Express**][9]  
     One of the most simple yet powerful ways to create a web server. Its minimalist approach and unopinionated focus on the core features of a server is key to its success.
+    
+    创建 web 服务器最简单但功能最强大的方法之一。它极简的方法和对服务器核心特性的专注是其成功的关键。
+    
 -   [**Meteor**][10]  
     An incredibly powerful full-stack framework, empowering you with an isomorphic approach to building apps with JavaScript and sharing code on the client and the server. Once an off-the-shelf tool that provided everything, it now integrates with front-end libraries such as [React][11], [Vue][12] and [Angular][13]. Meteor can be used to create mobile apps as well.
+    
+    一个功能强大的难以置信的全站框架，让你能够用一种同构的方法来使用 JavaScript 构建应用程序，并在客户端和服务器上共用代码。它曾经是一个现成的提供一切的工具，现在它集成了前端库，如[React][11]、[Vue][12]、[Angular][13]。Meteor 也可以用来创建移动应用程序。
+    
 -   [**Koa**][14]  
     Built by the same team behind Express, Koa aims to be even simpler and smaller, building on top of years of knowledge. The new project was born out of the need to create incompatible changes without disrupting the existing community.
+    
+    Koa 由 Express 原班人马打造，目标是在多年的经验积累上，变的更简单，更小的。这个新项目的诞生是出于在不破坏现有社区的情况下创建不兼容的更改。
+    
 -   [**Next.js**][15]  
     This is a framework to render server-side rendered [React][16] applications.
+    
+    这是一个用于渲染服务端渲染的 [React][16] 应用程序的框架。
+    
 -   [**Micro**][17]  
     This is a very lightweight server to create asynchronous HTTP microservices.
+    
+    这是一个非常轻量的服务器，用于创建 HTTP 微服务。
+    
 -   [**Socket.io**][18]  
     This is a real-time communication engine to build network applications.
+    
+    这是一个构建网络应用程序的实时通信引擎。
 
 ### A brief history of Node.js
 
+### Node.js 简史
+
 #### A look back on the history of Node.js from 2009 to today
+
+#### Node.js 2009年至今的发展历程回顾。
 
 Believe it or not, Node.js is just 9 years old.
 
+信不信由你，Node.js 才九岁。
+
 In comparison, JavaScript is 23 years old and the web as we know it (after the introduction of Mosaic) is 25 years old.
+
+相比之下，JavaScript 有23年的历史，而我们知道的 web（在引入 Mosaic 之后）有25那年的历史
 
 9 years is such a little amount of time for a technology, but Node.js seems to have been around forever.
 
+对于一项技术来讲，9年是如此的短暂，但是 Node.js 似乎一直都存在。
+
 I’ve had the pleasure to work with Node.js since the early days when it was just 2 years old, and despite the little information available, you could already feel it was a huge thing.
+
+我很高兴在早期的早期的时候就用 Node.js 工作，那时候它才两岁，尽管可获得的信息很少，但依然可以感觉它是一个庞大的事物。
 
 In this section, I want to draw the big picture of Node.js in its history, to put things in perspective.
 
+在本节中，我想勾勒出 Node.js 历史的全貌，以正确的看待它。
+
 #### A little bit of history
+
+#### 一点历史
 
 JavaScript is a programming language that was created at Netscape as a scripting tool to manipulate web pages inside their browser, [Netscape Navigator][19].
 
+JavaScript 是 Netscape 创建的一种编程语言，它是一种脚本工具，用于在他们的浏览器 [Netscape Navigator][19] 中操作网页。
+
 Part of the business model of Netscape was to sell Web Servers, which included an environment called “Netscape LiveWire”, which could create dynamic pages using server-side JavaScript. So the idea of server-side JavaScript was not introduced by Node.js, it’s old just like JavaScript — but at the time it was not successful.
+
+Netscape 的部分业务是销售 Web 服务器，其包括名为 "Netscape LiveWire" 的环境，该环境可以使用服务器端 JavaScript 创建动态页面。因此服务器端 JavaScript 的概念并不是由 JS 引入的，它和 JavaScript 一样古老，但当时并不成功。
 
 One key factor that led to the rise of Node.js was timing. A few years ago, JavaScript was starting to be considered a serious language, thanks for the “Web 2.0” applications that showed the world what a modern experience on the web could be like (think Google Maps or GMail).
 
+导致 Node.js 崛起的一个关键因素是时机。几年前，JavaScript 开始被认为是一种严肃的语言，这要感谢 ”Web2.0“ 应用程序向世界展示了现在网络体验（比如 Google 地图或 GMail）。
+
 The JavaScript engines performance bar raised considerably thanks to the browser competition battle, which is still going strong. Development teams behind each major browser work hard every day to give us better performance, which is a huge win for JavaScript as a platform. Chrome V8, the engine that Node.js uses under the hood, is one of those and in particular it’s the Chrome JavaScript engine.
 
+由于浏览器激烈的竞争，JavaScript 引擎的性能有了很大的提高，这种竞争仍然在持续。每个主要浏览器的开发团队都在努力的工作，以给我们提供更好的性能，这对于 JavaScript 做为一个平台来讲是巨大的胜利。Node.js 在后台使用 Chrome V8 引擎就是其中之一，尤其是 Chrome JavaScript 引擎。
+
 But of course, Node.js is not popular just because of pure luck or timing. It introduced much innovative thinking on how to program in JavaScript on the server.
+
+当然，Node.js 单纯的因为运气或时机所以不受欢迎。它引入了许多关于如何在服务器上运行 JavaScript 编程的创新思想。
 
 #### 2009
 
 Node.js is born
 
+Node.js 诞生了。
+
 The first form of [npm][20] is created
+
+第一种形式的 [npm][20] 被创建。
 
 #### 2010
 
 [Express][21] is born
 
+[Express][21] 诞生了。
+
 [Socket.io][22] is born
+
+[Socket.io][22] 诞生了。
 
 #### 2011
 
 npm hits 1.0
 
+npm 发布 1.0。
+
 Big companies start adopting Node: [LinkedIn][23], [Uber][24]
 
+大公司开始采用 Node：[LinkedIn][23], [Uber][24]。
+
 [Hapi][25] is born
+
+[Hapi][25] 诞生了。
 
 #### 2012
 
 Adoption continues very rapidly
 
+采纳仍在持续的进行。
+
 #### 2013
 
 First big blogging platform using Node.js: [Ghost][26]
+第一个使用 Node.js 的大型博客平台：[Ghost][26]。
 
 [Koa][27] is born
+
+[Koa][27] 诞生了。
 
 #### 2014
 
 Big drama: [IO.js][28] is a major fork of Node.js, with the goal of introducing ES6 support and move faster
 
+重头戏：[IO.js][28] 是 Node.js 的一个重要分支，其目标是引入 ES6 的支持并加快运行速度。
+
 #### 2015
 
 The [Node.js Foundation][29] is born
 
+[Node.js 基金会][29] 诞生了。
+
 IO.js is merged back into Node.js
+
+IO.js 被合并到 Node.js。
 
 npm introduces private modules
 
+npm 引入了私有模块。
+
 [Node 4][30] (no 1, 2, 3 versions were previously released)
+
+[Node 4][30] （之前没有发布1，2，3版本）
 
 #### 2016
 
 The [leftpad incident][31]
 
+[leftpad 事件][31]。
+
 [Yarn][32] is born: Node 6
+
+[Yarn][32] 诞生: Node 6。
 
 #### 2017
 
 npm focuses more on security: Node 8
 
+npm 更关注安全性： Node 8。
+
 [HTTP/2][33]
 
 [V8][34] introduces Node in its testing suite, officially making Node a target for the JavaScript engine, in addition to Chrome
 
+[V8][34] 在其测试套件中引入 Node，正式使 Node 成为除了 Chrome 之外的 JavaScript 引擎的目标。
+
 3 billion npm downloads every week
+
+每周有 30亿 npm 下载量。
 
 #### 2018
 
@@ -204,17 +357,30 @@ Node 10
 
 [mjs][36] experimental support
 
+[mjs][36] 实验支持。
+
 ### How to install Node.js
 
+### 如何安装 Node.js
+
 #### How you can install Node.js on your system: a package manager, the official website installer or nvm
+#### 如何在系统上安装 Node.js：包管理器、官方网站安装程序或 nvm。
 
 Node.js can be installed in different ways. This post highlights the most common and convenient ones.
 
+Node.js 可以用不同的方式安装。这篇文章重点介绍最常见和最方便的。
+
 Official packages for all the major platforms are available [here][37].
+
+所有主要平台的官方软件包都可以在[这里][37]获得。
 
 One very convenient way to install Node.js is through a package manager. In this case, every operating system has its own.
 
+安装 Node.js 的一种非常方便的方法是通过包管理器。在这种情况下，每种操作系统都有自己的操作命令。
+
 On macOS, [Homebrew][38] is the de-facto standard, and — once installed — allows to install Node.js very easily, by running this command in the CLI:
+
+在 macOS 上，[Homebrew][38] 是事实上的标准，一旦安装，通过在 CLI 中运行一下命令，可以非常轻松的安装 Node.js：
 
 ```
 brew install node
@@ -222,21 +388,39 @@ brew install node
 
 Other package managers for Linux and Windows are listed [here][39].
 
+其它的用于 Linux 和 Windows 的包管理器列表在 [这里][39]。
+
 [nvm][40] is a popular way to run Node.js. It allows you to easily switch the Node.js version, and install new versions to try and easily rollback if something breaks, for example.
+
+[nvm][40] 是运行 Node.js 流行的方法。它允许你轻松的切换 Node.js 版本，并且在安装新版本出现故障时尝试轻松回滚。
 
 It is also very useful to test your code with old Node.js versions.
 
+例如，它在永久版本测试您的代码的时候也非常有用。
+
 My suggestion is to use the official installer if you are just starting out and you don’t use Homebrew already. Otherwise, Homebrew is my favorite solution.
+
+我的建议是使用官方的安装程序，如果你刚开始并且没有使用 Homebrew。否则，Homebrew 是我最喜欢的解决方案。
 
 ### How much JavaScript do you need to know to use Node.js?
 
+你需要了解多少 JavaScript 才能使用 Node.js？
+
 If you are just starting out with JavaScript, how deeply do you need to know the language?
+
+如果你才开始使用 JavaScript，你需要对语言有多深的了解？
 
 As a beginner, it’s hard to get to a point where you are confident enough in your programming abilities.
 
+作为一个初学者，很难对自己的编程能力有足够的信心。
+
 While learning to code, you might also be confused at where does JavaScript end, and where Node.js begins, and vice versa.
 
+在学习编程时，你可能还不清楚 JavaScript 在哪里结束，Node.js 在哪里开始，反之亦然。
+
 I would recommend you to have a good grasp of the main JavaScript concepts before diving into Node.js:
+
+在深入研究 Node.js 之前，我建议你充分掌握主要的 JavaScript 概念：
 
 -   Lexical Structure
 -   Expressions
@@ -253,9 +437,28 @@ I would recommend you to have a good grasp of the main JavaScript concepts befor
 -   Strict Mode
 -   ECMAScript 6, 2016, 2017
 
+-   词法结构
+-   表达式
+-   类型
+-   变量
+-   函数
+-   this
+-   箭头函数
+-   循环
+-   循环和作用域
+-   数组
+-   模板标签
+-   分号
+-   严格模式
+-   ECMAScript 6, 2016, 2017
+
 With those concepts in mind, you are well on your road to become a proficient JavaScript developer, in both the browser and in Node.js.
 
+记住这些概念，无论在浏览器还是在 Node.js 中，你将成为一名精通 JavaScript 的开发人员。
+
 The following concepts are also key to understand asynchronous programming, which is one fundamental part of Node.js:
+
+以下概念也是理解异步编程的关键，异步编程是 Node.js 的一个基础部分：
 
 -   Asynchronous programming and callbacks
 -   Timers
@@ -264,101 +467,203 @@ The following concepts are also key to understand asynchronous programming, whic
 -   Closures
 -   The Event Loop
 
+-   异步编程和回调
+-   定时器
+-   Promises
+-   Async and Await
+-   闭包
+-   事件循环
+
 Luckily I wrote a free ebook that explains all those topics, and it’s called [JavaScript Fundamentals][41]. It’s the most compact resource you’ll find to learn all of this.
+
+幸运的是，我写了一本免费的电子书用来解释所有的主题，它叫 [JavaScript 基础][41]。这是你能找到的学习这些内容最紧凑的资源。。
 
 ### Differences between Node.js and the Browser
 
+### Node.js 和浏览器的区别
+
 How writing JavaScript application in Node.js differs from programming for the Web inside the browser.
+
+在 Node.js 中编写 JavaScript 应用程序和在浏览器中为 Web 编程有何不同。
 
 Both the browser and Node use JavaScript as their programming language.
 
+浏览器和 Node 都用 JavaScript 作为它们的编程语言。
+
 Building apps that run in the browser is a completely different thing than building a Node.js application.
+
+构建在浏览器中运行的应用程序和构建 Node.js 应用程序完全不同。
 
 Despite the fact that it’s always JavaScript, there are some key differences that make the experience radically different.
 
+尽管事实上它始终是 JavaScript，但是有一些关键的差异使得体验完全不同。
+
 A front-end developer that writes Node.js apps has a huge advantage — the language is still the same.
+
+前端开发者编写 Node.js 应用程序有一个巨大的优势 - 语言仍然是一样的。
 
 You have a huge opportunity because we know how hard it is to fully, deeply learn a programming language. By using the same language to perform all your work on the web — both on the client and on the server — you’re in a unique position of advantage.
 
+你有一个巨大的契机，因为我们知道全面、深入的学习一门编程语言是多么的困难。通过使用同一种语言在 Web 上完成你的工作， 无论是在浏览器还是服务器上，你都处于独特的优势地位。
+
 What changes is the ecosystem.
+
+改变的是生态系统。
 
 In the browser, most of the time what you are doing is interacting with the DOM, or other Web Platform APIs like Cookies. Those do not exist in Node.js, of course. You don’t have the `document`, `window` and all the other objects that are provided by the browser.
 
+在浏览器中，你大部分时间所做的是与 DOM 或者其它 Web 平台 API（如 Cookies）进行交互。当然，这些在 Node.js 中并不存在。你没有 `document`、`window` 和浏览器提供的其它所有的对象。
+
 And in the browser, we don’t have all the nice APIs that Node.js provides through its modules, like the file system access functionality.
+
+在浏览器中，我们并没有 Node.js 通过其模块提供的不错的 API，比如文件系统访问功能。
 
 Another big difference is that in Node.js you control the environment. Unless you are building an open source application that anyone can deploy anywhere, you know which version of Node.js you will run the application on. Compared to the browser environment, where you don’t get the luxury to choose what browser your visitors will use, this is very convenient.
 
+另一个很大的区别是，在 Node.js 中，你可以控制环境。除非你正在搭建一个任何人都可以在任何地方部署的开源应用程序，你知道在哪些版本的 Node.js 上运行该程序。与浏览器的环境相比，你不能选择访问者使用的浏览器，这是非常方便的。
+
 This means that you can write all the modern ES6–7–8–9 JavaScript that your Node version supports.
+
+这意味着你可以编写 Node 版本支持的所有现代 ES6-7-8-9 Javascript。
 
 Since JavaScript moves so fast, but browsers can be a bit slow and users a bit slow to upgrade — sometimes on the web, you are stuck using older JavaScript/ECMAScript releases.
 
+由于 Javascript 的变化速度很快，但是浏览器可能有点慢，并且用户升级也会有点慢 - 有时候在 web 上，你只能使用比较老的 JavaScript/ECMAScript 版本。
+
 You can use Babel to transform your code to be ES5-compatible before shipping it to the browser, but in Node.js, you won’t need that.
+
+在将代码发布到浏览器之前，你可以使用 Babel 将其转换为兼容 ES5-compatible 的代码，但是在 Node.js 中，你不需要这么做。
 
 Another difference is that Node.js uses the [CommonJS][42] module system, while in the browser we are starting to see the ES Modules standard being implemented.
 
+另一个不同点是 Node.js 使用 [CommonJS][42] 模块系统，在浏览器中，我们开始看到 ES Modules 标准开始实施。
+
 In practice, this means that for the time being you use `require()` in Node.js and `import`in the browser.
+
+实际上，这意味着目前你可以在 Node.js 中使用 `require()` 和在浏览器中使用 `import`。
 
 ### The V8 JavaScript Engine
 
+### Javascript V8 引擎
+
 V8 is the name of the JavaScript engine that powers Google Chrome. It’s the thing that takes our JavaScript and executes it while browsing with Chrome.
+
+V8 是 Google Chrome 的 Javascript 引擎的名字。它是一种在使用 Chrome 浏览时获取 JavaScript 并执行的事物。
 
 V8 provides the runtime environment in which JavaScript executes. The DOM, and the other Web Platform APIs are provided by the browser.
 
+V8 为 JavaScript 的执行提供了运行环境。DOM 和其它 Web 平台 api 由浏览器提供。
+
 The cool thing is that the JavaScript engine is independent by the browser in which it’s hosted. This key feature enabled the rise of Node.js. V8 was chosen for being the engine chosen by Node.js back in 2009, and as the popularity of Node.js exploded, V8 became the engine that now powers an incredible amount of server-side code written in JavaScript.
+
+最酷的事情是 JavaScript 引擎独立于它所在的浏览器。这个关键特征使得 Node.js 兴起。V8 早在 2009 年就被选为 Node.js 的引擎，并且伴随着 Node.js 的爆发性发展，V8 变成了现在可以驱动大量用 JavaScript 编写的服务器端代码的引擎。
 
 The Node.js ecosystem is huge and thanks to it V8 also powers desktop apps, with projects like [Electron][43].
 
+Node.js 的生态系统是非常庞大的，并且 V8 还为桌面应用程序提供了支持，比如 [Electron][43]。
+
 #### Other JS engines
 
+#### 其它的 JS 引擎
 Other browsers have their own JavaScript engine:
+
+其它的浏览器有它们自己的 JavaScript 引擎：
 
 -   Firefox has [Spidermonkey][44]
 -   Safari has [JavaScriptCore][45] (also called Nitro)
 -   Edge has [Chakra][46]
 
+-   Firefox 有 [Spidermonkey][44]
+-   Safari 有 [JavaScriptCore][45] (也可以叫 Nitro)
+-   Edge 有 [Chakra][46]
+
 and many others exist as well.
+
+并且还有其它的也存在。
 
 All those engines implement the ECMA ES-262 standard, also called ECMAScript, the standard used by JavaScript.
 
+所有的这些引擎都实现了 ECMA ES-262 标准，也叫 ECMAScript，JavaScript 使用的标准。
+
 #### The quest for performance
+
+#### 性能的探索
 
 V8 is written in C++, and it’s continuously improved. It is portable and runs on Mac, Windows, Linux and several other systems.
 
+V8 是用 C++ 编写的，并且持续的改进。它是便携式的，可以在 Mac, Windows, Linux 和其它一些操作系统上。
+
 In this V8 introduction, I will ignore the implementation details of V8. They can be found on more authoritative sites, including the [V8 official site][47], and they change over time, often radically.
+
+在 V8 的简介中，我将忽略 V8 的实现细节。它们可以在更权威的网站上找到，包括 [V8 官网][47]，并且它们会随着时间的推移变化，通常会发生根本性的变化。
 
 V8 is always evolving, just like the other JavaScript engines around, to speed up the Web and the Node.js ecosystem.
 
+就像其他的 JavaScript 引擎一样，V8 在持续不断的发展以加速 Web 和 Node.js 生态系统。
+
 On the web, there is a race for performance that’s been going on for years, and we (as users and developers) benefit a lot from this competition because we get faster and more optimized machines year after year.
+
+在网络上，对性能的竞争已经持续很多年了，我们（做为用户和开发者）从这场竞争中获益匪浅，因为我们可以获得一年比一年更快、优化更好的机器。
 
 #### Compilation
 
+#### 编译
+
 JavaScript is generally considered an interpreted language, but modern JavaScript engines no longer just interpret JavaScript, they compile it.
+
+JavaScript 通常被认为是一种解释型语言，但是现在 JavaScript 引擎已不再仅仅是解释 JavaScript，而是一种编译语言。
 
 This happens since 2009 when the SpiderMonkey JavaScript compiler was added to Firefox 3.5, and everyone followed this idea.
 
+自 2009年 SpiderMonkey JavaScript 编译器被添加到 Firefox 3.5 后，所有人都遵循这个想法。
+
 JavScript is internally compiled by V8 with just-in-time (JIT) compilation to speed up the execution.
 
-This might seem counter-intuitive,. But since the introduction of Google Maps in 2004, JavaScript has evolved from a language that was generally executing a few dozens of lines of code to complete applications with thousands to hundreds of thousands of lines running in the browser.
+JavaScript 是由 V8 内部编译的，它使用即时(JIT) 编译（原文：just-in-time (JIT) compilation）来加速执行。
+
+This might seem counter-intuitive. But since the introduction of Google Maps in 2004, JavaScript has evolved from a language that was generally executing a few dozens of lines of code to complete applications with thousands to hundreds of thousands of lines running in the browser.
+
+这看起来有违常理。但是自从2004年引入 Google 地图以来，JavaScript 已经从一种通常执行几十行代码的语言演变为在浏览器中运行数千到数十万行代码的应用程序。
 
 Our applications now can run for hours inside a browser, rather than being just a few form validation rules or simple scripts.
 
+我们的应用程序可以在浏览器中运行数小时，而不仅仅是一些表单验证规则或简单的脚本。
+
 In this **new world**, compiling JavaScript makes perfect sense because while it might take a little bit more to have the JavaScript **ready**, once done it’s going to be much more performant that purely interpreted code.
+
+在这个 **新世界**，编译 JavaScript 非常有意义，因为尽管 **尽管** 准备 JavaScript 可能需要更多的时间，但是一旦完成，纯解释性代码的性能会更好。
 
 ### How to exit from a Node.js program
 
+### 如何退出 Node.js 程序
+
 There are various ways to terminate a Node.js application.
+
+有多种方法可以结束 Node.js 应用程序。
 
 When running a program in the console you can close it with `ctrl-C`, but what I want to discuss here is programmatically exiting.
 
+在控制台运行程序的时候，你可以通过 `ctrl-C` 关闭它，但是这里我要讨论的是如何以编程的方式退出。
+
 Let’s start with the most drastic one, and see why you’re better off **not** using it.
+
+让我们从最极端的一个开始，并且看看为什么你最好**不要**使用它。
 
 The `process` core module is provides a handy method that allows you to programmatically exit from a Node.js program: `process.exit()`.
 
+`process` 核心模块提供了一个简便的方法允许你以编程的方式退出 Node.js 程序 `process.exit()`
+
 When Node.js runs this line, the process is immediately forced to terminate.
+
+当 Node.js 运行这行的时候，进程会立即强制结束。
 
 This means that any callback that’s pending, any network request still being sent, any file system access, or processes writing to `stdout` or `stderr` — all is going to be ungracefully terminated right away.
 
+这意味着任何正挂起的回调、正在发送的网络请求、任何文件系统访问、或者正在写入 `stdout` 或 `stderr` 的进程 - 都将立即被恶意终止。
+
 If this is fine for you, you can pass an integer that signals the operating system the exit code:
+
+如果对你是合适的，你可以传递一个整数，向操作系统发送退出代码：
 
 ```
 process.exit(1)
@@ -366,9 +671,15 @@ process.exit(1)
 
 By default the exit code is `0`, which means success. Different exit codes have different meaning, which you might want to use in your own system to have the program communicate to other programs.
 
+默认情况下，退出代码为 `0`，表示成功。不同的退出代码具有不懂的涵义，你可可能希望在自己的系统中使用这些代码，一边程序与其他程序通信。
+
 You can read more on exit codes [here][48].
 
+你可以在 [这里][48] 阅读更多关于退出代码的信息。
+
 You can also set the `process.exitCode` property:
+
+你还可以设置 `process.exitCode` 属性：
 
 ```
 process.exitCode = 1
@@ -376,9 +687,15 @@ process.exitCode = 1
 
 and when the program will later end, Node.js will return that exit code.
 
+当程序将要结束时，Node.js 将返回退出代码。
+
 A program will gracefully exit when all the processing is done.
 
+所有的处理完成后，程序将正常退出。
+
 Many times with Node.js we start servers, like this HTTP server:
+
+很多时候，我们用 Node.js 启动服务器，比如这个 HTTP 服务器：
 
 ```
 const express = require('express')const app = express()
@@ -394,9 +711,15 @@ app.listen(3000, () => console.log('Server ready'))
 
 This program is never going to end. If you call `process.exit()`, any currently pending or running request is going to be aborted. This is **not nice**.
 
+这个程序永远不会结束。如果你调用 `process.exit()`，任何当前挂起或者正在运行的请求都将被终止。这 **不太好**。
+
 In this case you need to send the command a `SIGTERM` signal, and handle that with the process signal handler:
 
+在这种情况下，你需要向终端发送一个 `SIGTERM` 命令，并使用进程命令处理程序处理该命令。
+
 **Note:** `process` does not require a `require`, it's automatically available.
+
+**注意**：`process` 不需要 `require`，它是自带可用的。
 
 ```plain
 const express = require('express')
@@ -420,11 +743,19 @@ process.on('SIGTERM', () => {  app.close(() => {    console.log('Process termina
 
 What are signals? Signals are a Portable Operating System Interface (POSIX) intercommunication system: a notification sent to a process in order to notify it of an event that occurred.
 
+什么是信号？信号是可移植操作系统接口（POSIX）内部通信系统：一种发给进程的通知，以通知它所发生的事情。
+
 `SIGKILL` is the signals that tells a process to immediately terminate, and would ideally act like `process.exit()`.
+
+`SIGKILL` 是通知进程立即终止的信号，理想情况下，它的行为类似于 `process.exit()`。
 
 `SIGTERM` is the signals that tells a process to gracefully terminate. It is the signal that's sent from process managers like `upstart` or `supervisord` and many others.
 
+`SIGTERM` 是通知进程正常终止的信号。这是进程管理器发出的信号，如 `upstart` 或 `supervisord` 等。
+
 You can send this signal from inside the program, in another function:
+
+你可以通过另一个功能从程序内部发送此信号：
 
 ```
 process.kill(process.pid, 'SIGTERM')
@@ -432,11 +763,18 @@ process.kill(process.pid, 'SIGTERM')
 
 Or from another Node.js running program, or any other app running in your system that knows the PID of the process you want to terminate.
 
+或者从另外一个正在运行的 Node.js 程序、或者系统中运行的任何其它应用程序知道要终止的进程的 PID。
+
 ### How to read environment variables from Node.js
+### 如何从 Node.js 读取环境变量
 
 The `process` core module of Node provides the `env`property which hosts all the environment variables that were set at the moment the process was started.
 
+Node 的 `process` 核心模块提供 `env` 属性，该属性设置在进程启动时设置的所有环境变量中。
+
 Here is an example that accesses the `NODE_ENV` environment variable, which is set to `development` by default.
+
+下面是一个访问环境变量 `NODE_ENV` 的例子，该变量默认设置为 `development`。
 
 ```plain
 process.env.NODE_ENV // "development"
@@ -444,60 +782,104 @@ process.env.NODE_ENV // "development"
 
 Setting it to `production` before the script runs will tell Node.js that this is a production environment.
 
+在脚本运行之前将其设置为 `production`，将告诉 Node.js 这是一个生产环境。
+
 In the same way you can access any custom environment variable you set.
+
+以同样的方式，你可以访问你设置的任何自定义环境变量。
 
 ### Where to host a Node.js app
 
+### Node.js 应用程序托管在哪里
+
 A Node.js application can be hosted in a lot of places, depending on your needs.
+
+Node.js 应用程序可以托管在很多地方，取决于你的需求。
 
 Here is a non-exhaustive list of the options you can explore when you want to deploy your app and make it publicly accessible.
 
+以下是一个非详细的选项列表，当你想要部署应用程序并让它可以公开访问时，你可以探索这些选项。
+
 I will list the options from simplest and constrained to more complex and powerful.
+
+我将列出从最简单和受约束的到更复杂和强大的选项。
 
 #### Simplest option ever: local tunnel
 
+#### 最简单的选择：本地隧道
+
 Even if you have a dynamic IP, or you’re under a NAT, you can deploy your app and serve the requests right from your computer using a local tunnel.
+
+即使你有一个动态 IP，或者你在 NAT 下，你也可以部署你的应用程序，并使用本地隧道来服务你的计算机的请求。
 
 This option is suited for some quick testing, demo a product or sharing of an app with a very small group of people.
 
+这个选项适用于一些快速测试、演示产品或与极少数人共享应用程序。
+
 A very nice tool for this, available on all platforms, is [ngrok][49].
+
+[ngrok][49] 是一个非常好的工具，在所有的平台都可以使用。
 
 Using it, you can just type `ngrok PORT` and the PORT you want is exposed to the internet. You will get a ngrok.io domain, but with a paid subscription you can get a custom URL as well as more security options (remember that you are opening your machine to the public Internet).
 
+使用它，你只需要键入 `ngrok PORT`，你想要的端口就会暴露在互联网上。你将会得到一个 ngrok.io 的域名，但是通过付费订阅，你可以获得自定义 URL 以及更多安全选项（请记住，你正在向公共 Internet 打开你的计算机）。
+
 Another service you can use is [localtunnel][50].
 
+你可以使用的另一个服务是 [localtunnel][50]。
+
 #### Zero configuration deployments
+
+#### 零配置部署
 
 #### Glitch
 
 [Glitch][51] is a playground and a way to build your apps faster than ever, and see them live on their own glitch.com subdomain. You cannot currently have a a custom domain, and there are a few [restrictions][52] in place, but it’s really great to prototype. It looks fun (and this is a plus), and it’s not a dumbed down environment — you get all the power of Node.js, a CDN, secure storage for credentials, GitHub import/export and much more.
 
+[Glitch][51] 是一个广场，是一种比以往任何时候都更快的构建应用程序的方法，并可以看到它们在 glitch.com 子域名运行。你现在不能拥有一个自定义域名，并且在一些地方有一些[限制][52]，但它真的是非常棒的典型。它看起来很有趣（这是一个优点），它不是一个简单的环境 - 你得到了 Node.js 所有的能力，CDN 用于凭据的安全存储。GitHub 的 import/export 等等。
+
 Provided by the company behind FogBugz and Trello (and co-creators of Stack Overflow).
 
+由 FogBugz 和 Trello 背后的公司（以及 Stack Overflow 的共同创建者）提供。
+
 I use it a lot for demo purposes.
+
+我经常用它来演示。
 
 #### Codepen
 
 [Codepen][53] is an amazing platform and community. You can create a project with multiple files, and deploy it with a custom domain.
 
+[Codepen][53] 是一个令人惊叹的平台和社区。你可以创建一个包含多个文件的项目，并使用自定义域名进行部署。
+
 #### Serverless
 
 A way to publish your apps, and have no server at all to manage, is Serverless. Serverless is a paradigm where you publish your apps as **functions**, and they respond on a network endpoint (also called FAAS — Functions As A Service).
 
+Serverless 是发布应用程序的一种方式，且无需管理任何服务器。Serverless 是一种规范，在这个规范中你可以将应用程序发布为 **functions**，他们在网络终端（也称为 FAAS — Functions As A Service）上响应。
+
 To very popular solutions are:
+
+非常受欢迎的解决方案：
 
 -   [Serverless Framework][54]
 -   [Standard Library][55]
 
 They both provide an abstraction layer to publishing on AWS Lambda and other FAAS solutions based on Azure or the Google Cloud offering.
 
+它们都为在 AWS Lambda 和其他基于 Azure 或者 Google Cloud 的 FAAS 解决方案上发布提供了一个抽象层。
+
 #### PAAS
 
 PAAS stands for Platform As A Service. These platforms take away a lot of things you should otherwise worry about when deploying your application.
 
+PAAS 表示 Platform As A Service（平台即服务）。这些平台带走了许多在部署应用程序时应该担心的事情。
+
 #### Zeit Now
 
 [Zeit][56] is an interesting option. You just type `now` in your terminal, and it takes care of deploying your application. There is a free version with limitations, and the paid version is more powerful. You simply forget that there’s a server, you just deploy the app.
+
+[Zeit][56] 是一个有趣的选择。你只需要在终端键入 `now`，它就会负责部署应用程序。有一个有限制的免费版本，付费版本更强大。你简单的忘了有一个服务器，你只是部署应用程序。
 
 #### Nanobox
 
@@ -507,41 +889,70 @@ PAAS stands for Platform As A Service. These platforms take away a lot of things
 
 [Heroku][58] is an amazing platform.
 
+[Heroku][58] 是一个令人惊异的平台。
+
 This is a great article on [getting started with Node.js on Heroku][59].
+
+[getting started with Node.js on Heroku][59] 这篇文章非常棒。
 
 #### Microsoft Azure
 
 [Azure][60] is the Microsoft Cloud offering.
 
+[Azure][60] 由 Microsoft Cloud 提供。
+
 Check out how to [create a Node.js web app in Azure][61].
+
+检查怎样[在 Azure 上创建 Node.js 网络应用程序][61]。
 
 #### Google Cloud Platform
 
+#### Google Cloud 平台
+
 [Google Cloud][62] is an amazing structure for your apps.
 
+[Google Cloud][62] 在你的应用程序中是一个神奇的构造。
+
 They have a good [Node.js Documentation Section][63].
+
+他们有一个好的 [Node.js Documentation Section][63]。
 
 #### Virtual Private Server
 
 In this section you find the usual suspects, ordered from more user friendly to less user friendly:
 
+在本节中，你可以找到常见 suspects ？？？，从更方便用户使用到不方便使用：
+
 -   [Digital Ocean][64]
 -   [Linode][65]
 -   [Amazon Web Services][66], in particular I mention Amazon Elastic Beanstalk as it abstracts away a little bit the complexity of AWS.
+-   [Amazon Web Services][66], 我特别提到了 Amazon Elastic Beanstalk，因为它稍微抽象了 AWS 的复杂性。
 
 Since they provide an empty Linux machine on which you can work, there is no specific tutorial for these.
 
+因为他们提供了一个空的 Linux 机器，你可以在上面工作，所以没有具体的教程来介绍这些。
+
 There are lots more options in the VPS category, those are just the ones I used and I would recommend.
+
+VBS 类别中有更多的选项，这些正是我使用的，我会推荐的。
 
 #### Bare metal
 
 Another solution is to get a [bare metal server][67], install a Linux distribution, connect it to the internet (or rent one monthly, like you can do using the [Vultr Bare Metal][68] service)
 
+另一个解决方案是获得一个 [bare metal server][67]，安装一个 Linux 发行版，将其连接到互联网（或者每月租用一个，就像使用 [Vultr bare metal][68] 服务一样）。
+
 ### How to use the Node.js REPL
+
+### 如何使用 Node.js REPL
 
 REPL stands for Read-Evaluate-Print-Loop, and it’s a great way to explore the Node.js features in a quick way.
 
+REPL 代表 Read-Evaluate-Print-Loop，它是一种快速探索 JS 特性的好方法。
+
 The `node` command is the one we use to run our Node.js scripts:
+
+`node` 命令是我们用来运行 Node.js 的脚本：
 
 ```plain
 node script.js
@@ -549,59 +960,102 @@ node script.js
 
 If we omit the filename, we use it in REPL mode:
 
+如果省略文件名，则在 REPL 模式下使用：
+
+
 ```plain
 node
 ```
 
 If you try it now in your terminal, this is what happens:
 
+如果你在终端中尝试，会发生以下情况：
+
 ```
-❯ node&gt;
+>
 ```
 
 the command stays in idle mode and waits for us to enter something.
 
+命令保持在空闲模式，等待我们输入一些内容。
+
 **Tip**: if you are unsure how to open your terminal, Google “How to open terminal on <your operating system>”.
+
+**提示**：如果你不确定如何打开终端，请使用谷歌 “如何在 <你的操作系统> 上打开终端”。
 
 The REPL is waiting for us to enter some JavaScript code.
 
+REPL 正在等待我们输入一些 JavaScript 代码。
+
 Start simple and enter:
 
+简单启动并输入：
+
 ```plain
-> console.log('test')testundefined>
+> console.log('test')
+test
+undefined
+>
 ```
 
 The first value, `test`, is the output we told the console to print, then we get undefined which is the return value of running `console.log()`.
 
+第一个值 `test` 是我们告诉控制到打印的输出，然后我们得到 undefined，这是运行 `console.log()` 的返回值。
+
 We can now enter a new line of JavaScript.
+
+我们现在可以输入一行新的 JavaScript。
 
 #### Use the tab to autocomplete
 
+#### 使用 tab 自动完成
+
 The cool thing about the REPL is that it’s interactive.
+
+REPL 非常酷的是它是交互式的。
 
 As you write your code, if you press the `tab` key the REPL will try to autocomplete what you wrote to match a variable you already defined or a predefined one.
 
+在编写代码时，如果按 `tab` 键，REPL 将尝试自动完成所编写的内容，以匹配已定义的变量或预定义的变量。
+
 #### Exploring JavaScript objects
+
+#### 探索 JavaScript 对象
 
 Try entering the name of a JavaScript class, like `Number`, add a dot and press `tab`.
 
+尝试输入 JavaScript 类的名称，如 `Number`，添加一个点，然后按 `tab` 键。
+
 The REPL will print all the properties and methods you can access on that class:
+
+REPL 将打印你可以在该类上访问的所有属性和方法：
 
 ![](https://cdn-media-1.freecodecamp.org/images/MgYHCtgjD1rom1yKM43E-qBh7ansJuyglRWr)
 
 #### Explore global objects
 
+#### 探索全局对象
+
 You can inspect the globals you have access to by typing `global.` and pressing `tab`:
+
+你可以通过输入 `global` 并按 `tab` 来检查有权访问的全局变量：
 
 ![](https://cdn-media-1.freecodecamp.org/images/e2qWLuyjYC4DFZjEs2jYWK-NL9AXbpDiSdA7)
 
 #### The \_ special variable
 
+#### 特别的变量 \_
 If after some code you type `_`, that is going to print the result of the last operation.
+
+如果在某些代码之后输入 `_`，则将打印最后一次操作的结果。
 
 #### Dot commands
 
+#### dot 命令
+
 The REPL has some special commands, all starting with a dot `.`. They are
+
+REPL 有一些特殊的命令，都以一个点 `.` 开头。他们是
 
 -   `.help`: shows the dot commands help
 -   `.editor`: enables editor more, to write multiline JavaScript code with ease. Once you are in this mode, enter ctrl-D to run the code you wrote.
@@ -611,9 +1065,21 @@ The REPL has some special commands, all starting with a dot `.`. They are
 -   `.save`: saves all you entered in the REPL session to a file (specify the filename)
 -   `.exit`: exists the repl (same as pressing ctrl-C two times)
 
+- `.help`：显示 dot 命令帮助
+- `.editor`：使编辑器更易于编写多行 JavaScript 代码。进入此模式后，输入 ctrl-D 以运行编写的代码。
+- `.break`：输入多行表达式时，输入 .break 命令将终止进一步的输入。与按 ctrl-C 相同。
+- `.clear`：将 REPL 上下文重置为空对象，并清除当前正在输入的多行表达式。
+- `.load`：相对于当前工作目录加载 JavaScript 文件。
+- `.save`：将在 REPL 会话中输入的所有内容保存到一个文件（指定文件名）
+- `.exit`：退出 repl（与按两次 ctrl-C 相同）
+
 The REPL knows when you are typing a multi-line statement without the need to invoke `.editor`.
 
+REPL 知道何时键入多行语句而不需要调用 `.editor`。
+
 For example if you start typing an iteration like this:
+
+例如，如果你开始键入如下迭代：
 
 ```
 [1, 2, 3].forEach(num =>; {
@@ -621,17 +1087,27 @@ For example if you start typing an iteration like this:
 
 and you press `enter`, the REPL will go to a new line that starts with 3 dots, indicating you can now continue to work on that block.
 
+按 `回车` 键，REPL 将转到一个以3个点开始的新行，表示你现在可以继续处理该块。
+
 ```
 ... console.log(num)... })
 ```
 
 If you type `.break` at the end of a line, the multiline mode will stop and the statement will not be executed.
 
+如果在行位键入 `.break`，多行模式将停止，语句将不会执行。
+
 ### Node.js, accept arguments from the command line
+
+### Node.js，从命令行接收参数
 
 How to accept arguments in a Node.js program passed from the command line
 
+如何在从命令行传递的 Node.js 程序中接收参数。
+
 You can pass any number of arguments when invoking a Node.js application using:
+
+调用 Node.js 应用程序时，可以使用一下方法传递任意数量的参数：
 
 ```plain
 node app.js
@@ -639,7 +1115,11 @@ node app.js
 
 Arguments can be standalone or have a key and a value.
 
+参数可以是独立的，也可以有 key 和 value。
+
 For example:
+
+例如：
 
 ```plain
 node app.js flavio
@@ -647,23 +1127,39 @@ node app.js flavio
 
 or
 
+或者
+
 ```plain
 node app.js name=flavio
 ```
 
 This changes how you will retrieve this value in the Node.js code.
 
+这将改变在 Node.js 代码中检索该值的方式。
+
 The way you retrieve it is using the `process` object built into Node.js.
+
+检索它的方法是使用 Node.js 中内置的 `process` 对象。
 
 It exposes an `argv` property, which is an array that contains all the command line invocation arguments.
 
+它公开了一个 `argv` 属性，该属性是一个包含所有命令行调用参数的数组。
+
 The first argument is the full path of the `node` command.
+
+第一个参数是 `node` 命令的完整路径。
 
 The second element is the full path of the file being executed.
 
+第二个元素是正在执行的文件的完整路径。
+
 All the additional arguments are present from the third position going forward.
 
+所有额外的参数都是从第三个位置开始的。
+
 You can iterate over all the arguments (including the node path and the file path) using a loop:
+
+可以使用循环迭代所有参数（包括节点路径和文件路径）：
 
 ```
 process.argv.forEach((val, index) => {  console.log(`${index}: ${val}`)})
@@ -671,11 +1167,15 @@ process.argv.forEach((val, index) => {  console.log(`${index}: ${val}`)})
 
 You can get only the additional arguments by creating a new array that excludes the first 2 params:
 
+通过创建排除前两个参数的新数组，只能获取附加参数：
+
 ```plain
 const args = process.argv.slice(2)
 ```
 
 If you have one argument without an index name, like this:
+
+如果有一个参数没有索引名，如下所示：
 
 ```
 node app.js flavio
@@ -683,11 +1183,15 @@ node app.js flavio
 
 you can access it using
 
+你可以使用
+
 ```
 const args = process.argv.slice(2)args[0]
 ```
 
 In this case:
+
+在这种情况下：
 
 ```plain
 node app.js name=flavio
@@ -695,25 +1199,43 @@ node app.js name=flavio
 
 `args[0]` is `name=flavio`, and you need to parse it. The best way to do so is by using the `minimist` [library][69], which helps dealing with arguments:
 
+`args[0]` 是 `name=flavio`，需要对其进行解析。最好的方法是使用 `minimist` [库][69]，这有助于处理参数：
+
 ```
 const args = require('minimist')(process.argv.slice(2))args['name'] //flavio
 ```
 
 ### Output to the command line using Node.js
 
+### 使用 Node.js 输出到命令行
+
 How to print to the command line console using Node.js, from the basic console.log to more complex scenarios
+
+如何使用 Node.js 打印到命令行控制台，从基本的 console.log 到更复杂的场景。
 
 #### Basic output using the console module
 
+#### 使用控制台模块的基本输出
+
 Node.js provides a `console` [module][70] which provides tons of very useful ways to interact with the command line.
+
+Node.js 提供一个 `console` [模块][70]，它提供了大量与命令行交互非常有用的方法。
 
 It is basically the same as the `console` object you find in the browser.
 
+它与你在浏览器中找到的 `console` 对象基本相同。
+
 The most basic and most used method is `console.log()`, which prints the string you pass to it to the console.
+
+最基本和最常用的方法是 `console.log()`，将传递给它的字符串打印到控制台。
 
 If you pass an object, it will render it as a string.
 
+如果你传递了一个对象，它将把它呈现为一个字符串。
+
 You can pass multiple variables to `console.log`, for example:
+
+你可以将多个变量传递给  `console.log`，例如：
 
 ```plain
 const x = 'x'const y = 'y'console.log(x, y)
@@ -721,9 +1243,15 @@ const x = 'x'const y = 'y'console.log(x, y)
 
 and Node.js will print both.
 
+Node.js 将把两个都打印出来。
+
 We can also format pretty phrases by passing variables and a format specifier.
 
+我们还可以通过传递变量和格式说明符来格式化漂亮的短语。
+
 For example:
+
+例如：
 
 ```
 console.log('My %s has %d years', 'cat', 2)
@@ -734,7 +1262,14 @@ console.log('My %s has %d years', 'cat', 2)
 -   `%f` format a variable as a floating point number
 -   `%O` used to print an object representation
 
+-   `%s` 将变量格式化为字符串
+-   `%d` 或 `%i` 将变量格式化为整数
+-   `%f` 将变量格式化为浮点数
+-   `%O` 用于打印对象表示
+
 Example:
+
+例如：
 
 ```plain
 console.log('%O', Number)
@@ -742,63 +1277,128 @@ console.log('%O', Number)
 
 #### Clear the console
 
+#### 清理控制台
+
 `console.clear()` clears the console (the behavior might depend on the console used)
+
+`console.clear()` 清理控制台（行为可能取决于使用的控制台）
 
 #### Counting elements
 
+#### 计数元素
+
 `console.count()` is a handy method.
+
+`console.count()` 是一个灵活的方法。
 
 Take this code:
 
+使用以下代码：
+
 ```
-const x = 1const y = 2const z = 3console.count(  'The value of x is ' + x + ' and has been checked .. how many times?')console.count(  'The value of x is ' + x + ' and has been checked .. how many times?')console.count(  'The value of y is ' + y + ' and has been checked .. how many times?')
+const x = 1
+const y = 2
+const z = 3
+console.count(  'The value of x is ' + x + ' and has been checked .. how many times?')
+console.count(  'The value of x is ' + x + ' and has been checked .. how many times?')
+console.count(  'The value of y is ' + y + ' and has been checked .. how many times?')
 ```
 
 What happens is that `count` will count the number of times a string is printed, and print the count next to it.
 
+所要发生的是 `count` 将计算字符串打印次数，并打印旁边的计数。
+
 You can just count apples and oranges:
 
+你可以数苹果和橘子：
+
 ```
-const oranges = ['orange', 'orange']const apples = ['just one apple']oranges.forEach(fruit => {  console.count(fruit)})apples.forEach(fruit => {  console.count(fruit)})
+const oranges = ['orange', 'orange']
+const apples = ['just one apple']
+oranges.forEach(fruit => {
+  console.count(fruit)
+})
+apples.forEach(fruit => {
+  console.count(fruit)
+})
 ```
 
 #### Print the stack trace
+#### 打印堆栈跟踪
 
 There might be cases where it’s useful to print the call stack trace of a function, maybe to answer the question: “How did you reach that part of the code?”
 
+在某些情况下，打印函数的调用堆栈跟踪可能很有用，也许可以回答这样一个问题：“你是如何到达代码的那一部分的？”
+
 You can do so using `console.trace()`:
 
+你可以这样使用 `console.trace()`:
+
 ```
-const function2 = () => console.trace()const function1 = () => function2()function1()
+const function2 = () => console.trace()
+const function1 = () => function2()
+function1()
 ```
 
 This will print the stack trace. This is what’s printed if I try this in the Node REPL:
 
+这将要打印堆栈跟踪，如果我在 Node REPL 中尝试，就会打印这个。
+
 ```plain
-Trace    at function2 (repl:1:33)    at function1 (repl:1:25)    at repl:1:1    at ContextifyScript.Script.runInThisContext (vm.js:44:33)    at REPLServer.defaultEval (repl.js:239:29)    at bound (domain.js:301:14)    at REPLServer.runBound [as eval] (domain.js:314:12)    at REPLServer.onLine (repl.js:440:10)    at emitOne (events.js:120:20)    at REPLServer.emit (events.js:210:7)
+Trace
+    at function2 (repl:1:33)    
+    at function1 (repl:1:25)    
+    at repl:1:1    
+    at ContextifyScript.Script.runInThisContext (vm.js:44:33)    
+    at REPLServer.defaultEval (repl.js:239:29)    
+    at bound (domain.js:301:14)    
+    at REPLServer.runBound [as eval] (domain.js:314:12)    
+    at REPLServer.onLine (repl.js:440:10)    
+    at emitOne (events.js:120:20)    
+    at REPLServer.emit (events.js:210:7)
 ```
 
 #### Calculate the time spent
 
-You can easily calculate how much time a function takes to run, using `time()` and `timeEnd()`
+#### 计算花费的时间
 
+You can easily calculate how much time a function takes to run, using `time()` and `timeEnd()`
+你可以使用 `time()` 和 `timeEnd()` 轻松计算函数运行所需时间。
 ```
-const doSomething = () => console.log('test')const measureDoingSomething = () => {  console.time('doSomething()')  //do something, and measure the time it takes  doSomething()  console.timeEnd('doSomething()')}measureDoingSomething()
+const doSomething = () => console.log('test')
+const measureDoingSomething = () => {
+    console.time('doSomething()')  //do something, and measure the time it takes
+    doSomething()
+    console.timeEnd('doSomething()')
+}
+measureDoingSomething()
 ```
 
 #### stdout and stderr
 
 As we saw console.log is great for printing messages in the Console. This is what’s called the standard output, or `stdout`.
 
+如我们所见 console.log 非常适合在控制台中打印消息。这就是所谓的标准输出，或 `stdout`。
+
 `console.error` prints to the `stderr` stream.
+
+`console.error` 打印 `stderr` 流。
 
 It will not appear in the console, but it will appear in the error log.
 
+它不会出现在控制台中，但会出现在错误日志中。
+
 #### Color the output
+
+#### 为输出着色
 
 You can color the output of your text in the console by using escape sequences. An escape sequence is a set of characters that identifies a color.
 
+你可以使用转义符在控制台中为文本的输出着色。转义符是标识颜色的一组字符。
+
 Example:
+
+例如：
 
 ```
 console.log('\x1b[33m%s\x1b[0m', 'hi!')
@@ -806,87 +1406,162 @@ console.log('\x1b[33m%s\x1b[0m', 'hi!')
 
 You can try that in the Node REPL, and it will print `hi!` in yellow.
 
+你可以在 Node REPL 中尝试，他将打印黄色的 `hi!`。
+
 However, this is the low-level way to do this. The simplest way to go about coloring the console output is by using a library. [Chalk][71] is such a library, and in addition to coloring it also helps with other styling facilities, like making text bold, italic or underlined.
+
+然而，这是一种低级的方法。为控制台输出着色最简单的方法是使用库。[Chalk][71] 就是这样一个库，除了着色之外，它还可以帮助其他样式设置，比如使文本加粗、斜体或下划线。
 
 You install it with `npm install chalk`, then you can use it:
 
+你可以使用 `npm install chalk` 安装它，然后可以使用它：
+
 ```plain
-const chalk = require('chalk')console.log(chalk.yellow('hi!'))
+const chalk = require('chalk')
+console.log(chalk.yellow('hi!'))
 ```
 
 Using `chalk.yellow` is much more convenient than trying to remember the escape codes, and the code is much more readable.
 
+使用 `chal.yellow` 比试图记住转移码方便得多，而且代码的可读性更高。
+
 Check the project link I posted above for more usage examples.
+
+查看我在上面发布的项目链接以获取更多的用法示例。
 
 #### Create a progress bar
 
+#### 创建进度条
+
 [Progress][72] is an awesome package to create a progress bar in the console. Install it using `npm install progress`.
 
-This snippet creates a 10-step progress bar, and every 100 ms one step is completed. When the bar completes we clear the interval:
+[Progress][72] 是一个很棒的包，可以在控制台中创建进度条。使用 `npm install progress` 安装它。
+
+This snippet creates a 10-step progress bar, and every 100 ms one step is  completed. When the bar completes we clear the interval:
+
+这个片段创建了一个 10步的进度条，每 100 毫秒完成一步。当进度完成时，我们清除 interval：
 
 ```
 const ProgressBar = require('progress')
 ```
 
 ```
-const bar = new ProgressBar(':bar', { total: 10 })const timer = setInterval(() => {  bar.tick()  if (bar.complete) {    clearInterval(timer)  }}, 100)
+const bar = new ProgressBar(':bar', {
+    total: 10
+  })
+const timer = setInterval(() => {
+  bar.tick()
+  if (bar.complete) {
+    clearInterval(timer)
+  }
+}, 100)
 ```
 
 ### Accept input from the command line in Node.js
 
+### 在 Node.js 中接受来自命令行的输入
+
 How to make a Node.js CLI program interactive?
+
+如何使 Node.js CLI 程序具有交互性？
 
 Node since version 7 provides the `readline` [module][73] to perform exactly this: get input from a readable stream such as the `process.stdin` stream, which during the execution of a Node program is the terminal input, one line at a time.
 
+自从 7 版本以来的 Node 提供了 `readline` [模块][73] 来执行以下操作：从诸如 `process.stdin` 流之类的可读流获取输入，在执行 Node 程序时，它在终端输入，一次一行。
+
 ```plain
-const readline = require('readline').createInterface({  input: process.stdin,  output: process.stdout})
+const readline = require('readline').createInterface({
+  input: process.stdin,
+  output: process.stdout
+})
 ```
 
 ```
-readline.question(`What's your name?`, (name) => {  console.log(`Hi ${name}!`)  readline.close()})
+readline.question(`What's your name?`, (name) => {
+  console.log(`Hi ${name}!`)
+  readline.close()
+})
 ```
 
 This piece of code asks the username, and once the text is entered and the user presses enter, we send a greeting.
 
+这段代码询问用户名，一旦输入了文本，用户按回车键，我们就发送一个问候语。
+
 The `question()` method shows the first parameter (a question) and waits for the user input. It calls the callback function once enter is pressed.
+
+`question()` 方法显示第一个参数（一个问题）并等待用户输入。一旦按下回车键，它就会调用回调函数。
 
 In this callback function, we close the readline interface.
 
+在这个回调函数中，我们关闭 readline 接口。
+
 `readline` offers several other methods, and I’ll let you check them out on the package documentation I linked above.
+
+`readline` 提供了其它集中方法，我将让你在上面链接的包文档中查看它们。
 
 If you need to require a password, it’s best to now echo it back, but instead showing a `*`symbol.
 
+如果你需要密码，最好现在回显它，而不是显示 `*` 符号。
+
 The simplest way is to use the readline-sync [package][74] which is very similar in terms of the API and handles this out of the box.
+
+最简单的方法是使用 readline-sync [package][74]，它在 API 方面非常相似，开箱即用。
 
 A more complete and abstract solution is provided by the [Inquirer.js package][75].
 
+一个更完整和抽象的解决方案是由 [Inquirer.js package][75] 提供。
+
 You can install it using `npm install inquirer`, and then you can replicate the above code like this:
+
+你可以使用 `npm install inquirer` 安装它，然后可以这样复制上面的代码：
 
 ```plain
 const inquirer = require('inquirer')
 ```
 
 ```
-var questions = [{  type: 'input',  name: 'name',  message: "What's your name?",}]
+var questions = [
+  {
+    type: 'input',
+    name: 'name',
+    message: "What's your name?"
+  }
+]
 ```
 
 ```
-inquirer.prompt(questions).then(answers => {  console.log(`Hi ${answers['name']}!`)})
+inquirer.prompt(questions).then(answers => {
+  console.log(`Hi ${answers['name']}!`)
+})
 ```
 
 Inquirer.js lets you do many things like asking multiple choices, having radio buttons, confirmations, and more.
 
+Inquirer.js 让你可以做很多的事情，比如多项选择，单选按钮，确认等。
+
 It’s worth knowing all the alternatives, especially the built-in ones provided by Node.js, but if you plan to take CLI input to the next level, Inquirer.js is an optimal choice.
+
+了解所有的备选方案都是值得的，尤其是 Node.js 提供的内置选项，但是如果你计划将 CLI 输入提升到下一个级别，Inquirer.js 是最佳的选择。
 
 ### Expose functionality from a Node.js file using exports
 
+### 使用 exports 从 Node.js 中暴露功能
+
 How to use the `module.exports` API to expose data to other files in your application, or to other applications as well
+
+如何使用 `module.exports` API 暴露数据给应用程序中的其它文件，或者公开给其它应用程序。
 
 Node.js has a built-in module system.
 
+Node.js 有一个内置模块系统。
+
 A Node.js file can import functionality exposed by other Node.js files.
 
+Node.js 文件可以导入其它 Node.js 文件暴露的功能。
+
 When you want to import something you use:
+
+当想要导入你要用的内容时：
 
 ```
 const library = require('./library')
@@ -894,20 +1569,37 @@ const library = require('./library')
 
 to import the functionality exposed in the `library.js` file that resides in the current file folder.
 
+导入位于当前文件夹中的 `library.js` 文件中暴露的功能。
+
 In this file, functionality must be exposed before it can be imported by other files.
+
+在这个文件中，必须先暴露功能，然后才能由其它文件导入。
 
 Any other object or variable defined in the file by default is private and not exposed to the outer world.
 
+默认情况下，文件中定义任何其它对象或变量都是私有的，不对外公开。
+
 This is what the `module.exports` API offered by the `module` [system][76] allows us to do.
+
+这就是 通过 `module` [system][76] 提供的 `module.exports` API 允许我们做的事情。
 
 When you assign an object or a function as a new `exports` property, that is the thing that’s being exposed. As such, it can be imported in other parts of your app, or in other apps as well.
 
+当你将一个对象或函数指定为新的 `exports` 属性时，这就是要暴露的内容。因此，可以在应用程序的其它部分导入，也可以在其它应用程序中导入。
+
 You can do so in 2 ways.
+
+你可以用两种方法来实现。
 
 The first is to assign an object to `module.exports`, which is an object provided out of the box by the module system, and this will make your file export **just that object**:
 
+第一种是将对象分配给 `module.exports`，这是模块系统提供的现成对象，这将使你的文件输出 **就是那个对象**。
+
 ```
-const car = {  brand: 'Ford',  model: 'Fiesta'}
+const car = {
+  brand: 'Ford',
+  model: 'Fiesta'
+}
 ```
 
 ```
@@ -915,7 +1607,7 @@ module.exports = car
 ```
 
 ```
-//..in the other file
+// ..in the other file
 ```
 
 ```
@@ -924,8 +1616,13 @@ const car = require('./car')
 
 The second way is to add the exported object as a property of `exports`. This way allows you to export **multiple** objects, functions or data:
 
+第二种方法是将导出的对象添加为 `exports` 的属性。这样可以输出 **多个** 对象、函数或数据：
+
 ```
-const car = {  brand: 'Ford',  model: 'Fiesta'}
+const car = {
+  brand: 'Ford',
+  model: 'Fiesta'
+}
 ```
 
 ```
@@ -934,17 +1631,27 @@ exports.car = car
 
 or directly
 
+或者直接
+
 ```
-exports.car = {  brand: 'Ford',  model: 'Fiesta'}
+exports.car = {
+  brand: 'Ford',
+  model: 'Fiesta'
+}
 ```
 
 And in the other file, you’ll use it by referencing a property of your import:
 
+在另外一个文件中，你将通过引用导入的属性来使用它：
+
 ```
-const items = require('./items')items.car
+const items = require('./items')
+items.car
 ```
 
 or
+
+或者
 
 ```
 const car = require('./items').car
@@ -952,25 +1659,45 @@ const car = require('./items').car
 
 What’s the difference between `module.exports` and `exports`?
 
+`module.exports` 和 `exports` 两者有什么区别？
+
 The first exposes **the object** it points to. The latter exposes **the properties** of the object it points to.
+
+第一个暴露指向它的 **对象**
 
 ### Introduction to npm
 
+### npm 简介
+
 `npm` means **node package manager**.
+
+`npm` 表示 **node 包管理器**
 
 In January 2017 over 350,000 packages were reported as being listed in the npm registry, making it the biggest single language code repository on Earth, and you can be sure there is a package for (almost!) everything.
 
+截止2021年4月，官方显示它有超过100万个包，这使它成为地球上最大的单一语言代码库，你可以确定（几乎）所有的东西都有一个包。
+
 It started as a way to download and manage dependencies of Node.js packages, but it has since become a tool used also in front-end JavaScript.
 
+它最初是一种下载和管理 Node.js 包依赖关系的方法，但是后来也成为了一种在前端 Javascript 中使用的工具。
+
 There are many things that `npm` does.
+
+`npm` 做了很多事。
 
 #### Downloads
 
 `npm` manages downloads of dependencies of your project.
 
+`npm` 管理项目依赖项的下载
+
 #### Installing all dependencies
 
+#### 安装所有依赖项
+
 If a project has a `packages.json` file, by running
+
+如果一个项目有 `packages.json` 文件，通过运行
 
 ```
 npm install
@@ -978,9 +1705,15 @@ npm install
 
 it will install everything the project needs, in the `node_modules` folder, creating it if it’s not existing already.
 
+它会将项目所需的一切安装在 `node_modules` 文件夹中，如果它还不存在，就会创建它。
+
 #### Installing a single package
 
+#### 安装单个包
+
 You can also install a specific package by running
+
+另外你可以安装指定的包，通过运行
 
 ```
 npm install <package-name>
@@ -988,14 +1721,23 @@ npm install <package-name>
 
 Often you’ll see more flags added to this command:
 
--   `--save` installs and adds the entry to the `package.json` file `dependencies`
--   `--save-dev` installs and adds the entry to the `package.json` file `devDependencies`
+通常，你会看到此命令中添加了更多标识：
 
+-   `--save` installs and adds the entry to the `package.json` file `dependencies`
+-   `--save` 安装该条目并将其加入到 `package.json` 文件的 `dependencies` 中
+-   `--save-dev` installs and adds the entry to the `package.json` file `devDependencies`
+-   `--save-dev` 安装该条目并将其加入到 `package.json` 文件的 `devDependencies` 中
+-   
 The difference is mainly that `devDependencies` are usually development tools, like a testing library, while `dependencies` are bundled with the app in production.
 
+区别主要在于 `devDependencies` 通常在开发工具，如测试库，而 `dependencies` 则与生产中的应用捆绑在一起。
+
 #### Updating packages
+#### 更新包
 
 Updating is also made easy, by running
+
+更新也很容易，通过运行：
 
 ```
 npm update
@@ -1003,7 +1745,11 @@ npm update
 
 `npm` will check all packages for a newer version that satisfies your versioning constraints.
 
+`npm` 将检查所有包是否有满足版本控制约束的更新版本。
+
 You can specify a single package to update as well:
+
+也可以指定要更新的单个包：
 
 ```plain
 npm update <package-name>
@@ -1011,19 +1757,35 @@ npm update <package-name>
 
 #### Versioning
 
+#### 版本控制
+
 In addition to plain downloads, `npm` also manages **versioning**, so you can specify any specific version of a package, or require a version higher or lower than what you need.
+
+除了普通的下载外， `npm` 还可以管理 **版本控制**，因此你可以指定任何特定版本的包，或者要求比你需要的版本高或者低的版本。
 
 Many times you’ll find that a library is only compatible with a major release of another library.
 
+很多时候，你会发现一个库只与另外一个库的是主要版本兼容。
+
 Or a bug in the latest release of a lib, still unfixed, is causing an issue.
+
+或者 lib 的最新版本中的一个 bug 仍然没有修复，导致了一个问题。
 
 Specifying an explicit version of a library also helps to keep everyone on the same exact version of a package, so that the whole team runs the same version until the `package.json` file is updated.
 
+指定一个库的明确版本也有助于使每个人都使用相同的包的版本，这样整个团队就可以运行相同的版本，直到 `package.json` 文件更新。
+
 In all those cases, versioning helps a lot, and `npm` follows the semantic versioning (semver) standard.
+
+在所有这些情况下，版本控制的帮助很大， `npm` 遵循语义版本控制(semver)标准。
 
 #### Running Tasks
 
+#### 运行中的任务
+
 The package.json file supports a format for specifying command line tasks that can be run by using
+
+package.json 文件支持指定命令行任务的格式，可以通过使用：
 
 ```plain
 npm <task-name>
@@ -1031,30 +1793,57 @@ npm <task-name>
 
 For example:
 
+例如：
+
 ```plain
-{  "scripts": {    "start-dev": "node lib/server-development",    "start": "node lib/server-production"  }}
+{
+  "scripts": {
+    "start-dev": "node lib/server-development",
+    "start": "node lib/server-production"
+  }
+}
 ```
 
 It’s very common to use this feature to run Webpack:
 
+使用此功能运行 Webpack 非常常见：
+
 ```
-{  "scripts": {    "watch": "webpack --watch --progress --colors --config webpack.conf.js",    "dev": "webpack --progress --colors --config webpack.conf.js",    "prod": "NODE_ENV=production webpack -p --config webpack.conf.js",  }}
+{
+  "scripts": {
+    "watch": "webpack --watch --progress --colors --config webpack.conf.js",
+    "dev": "webpack --progress --colors --config webpack.conf.js",
+    "prod": "NODE_ENV=production webpack -p --config webpack.conf.js"
+  }
+}
 ```
 
 So instead of typing those long commands, which are easy to forget or mistype, you can run
 
+所以不要输入那些很长的命令，它们很容易忘记或忘记输入，你可以运行
+
 ```
-$ npm watch$ npm dev$ npm prod
+$ npm watch
+$ npm dev
+$ npm prod
 ```
 
 ### Where does npm install the packages?
 
+### npm 在哪里安装包？
+
 When you install a package using `npm` (or [yarn][77]), you can perform 2 types of installation:
+
+使用 `npm` （或[yarn][77]）安装包时，可以执行两种类型的安装：
 
 -   a local install
 -   a global install
+- 本地安装
+- 全局安装
 
 By default, when you type an `npm install` command, like:
+
+默认情况下，输入 `npm install` 命令时，如：
 
 ```
 npm install lodash
@@ -1062,9 +1851,15 @@ npm install lodash
 
 the package is installed in the current file tree, under the `node_modules` subfolder.
 
+该包安装在当前文件夹下的 `node_modules` 子文件夹下。
+
 As this happens, `npm` also adds the `lodash` entry in the `dependencies` property of the `package.json` file present in the current folder.
 
+与此同时，`npm` 也会在当前文件夹中的 `package.json` 文件的 `dependencies` 属性中添加 `lodash` 项。
+
 A global installation is performed using the `-g` flag:
+
+全局安装使用 `-g` 标识：
 
 ```
 npm install -g lodash
@@ -1072,23 +1867,41 @@ npm install -g lodash
 
 When this happens, npm won’t install the package under the local folder, but instead, it will use a global location.
 
+发生这种情况时，npm 不会将包安装在本地文件夹下，而是使用全局位置。
+
 Where, exactly?
+
+确切地说，在哪里？
 
 The `npm root -g` command will tell you where that exact location is on your machine.
 
+`npm root -g` 命令将告诉你该位置在你的计算机上的确切位置。
+
 On macOS or Linux this location could be `/usr/local/lib/node_modules`. On Windows it could be `C:\Users\YOU\AppData\Roaming\npm\node_modules`
+
+在 macOS 或 Linux 上，此位置可以是 `/usr/local/lib/node_modules`。在 Windows 上，它可以是 `C:\Users\YOU\AppData\Roaming\npm\node_modules`。
 
 If you use `nvm` to manage Node.js versions, however, that location would differ.
 
+如果你使用 `nvm` 管理 Node.js 版本，然而不同的版本位置会有所不同。
+
 I for example use `nvm` and my packages location was shown as`/Users/flavio/.nvm/versions/node/v8.9.0/lib/node_modules`.
 
+例如，我使用 `nvm`，包的位置显示为 `/Users/flavio/.nvm/versions/node/v8.9.0/lib/node_modules`。
+
 ### How to use or execute a package installed using npm
+
+### 如何使用或执行使用 npm 安装的包
 
 #### How to include and use in your code a package installed in your node_modules folder
 
 When you install using `npm` a package into your `node_modules` folder, or also globally, how do you use it in your Node code?
 
+当你使用 `npm` 将包安装到 `node_modules` 文件夹或全局安装时，如何在 Node 代码中使用它？
+
 Say you install `lodash`, the popular JavaScript utility library, using
+
+假如你安装了流行的 Javascript 实用程序库 `loadash`，使用
 
 ```
 npm install lodash
@@ -1096,7 +1909,11 @@ npm install lodash
 
 This is going to install the package in the local `node_modules` folder.
 
+这将在本地 `node_modules` 文件夹中安装程序包。
+
 To use it in your code, you just need to import it into your program using `require`:
+
+要在代码中使用它，只需要使用 `require` 将其导入到程序中：
 
 ```
 const _ = require('lodash)
@@ -1104,19 +1921,35 @@ const _ = require('lodash)
 
 What if your package is an executable?
 
+如果你的包是可执行的呢？
+
 In this case, it will put the executable file under the `node_modules/.bin/` folder.
+
+在这种情况下，它会将可执行文件放在 `node_moduels/.bin` 文件夹下。
 
 One easy way to demonstrate this is [cowsay][78].
 
+证明这一点的一个简单方法是 [cowsay][78].
+
 The cowsay package provides a command line program that can be executed to make a cow say something (and other animals as well).
+
+cowsay 包提供了一个命令行程序，可以执行该程序使奶牛（以及其它动物）说些什么。
 
 When you install the package using `npm install cowsay`, it will install itself and a few dependencies in the node_modules folder:
 
+当你使用 `npm instail cowsay` 安装包时，它将在 node_modules 文件夹中安装自身和一些依赖项：
+
 There is a hidden .bin folder, which contains symbolic links to the cowsay binaries.
+
+有一个隐藏的 .bin 文件夹，其中包含指向 cowsay 二进制文件的符号链接。
 
 How do you execute those?
 
+你怎么执行这些？
+
 You can of course type `./node_modules/.bin/cowsay` to run it, and it works, but [npx][79], included in the recent versions of npm (since 5.2), is a much better option. You just run:
+
+当然，你可以输入 `./node_modules/.bin/cowsay` 来运行它，但是 npm 最新版本（从 5.2 以后）中包含的 [npx][79] 是一个更好的选择。你只要运行：
 
 ```
 npx cowsay
@@ -1124,19 +1957,34 @@ npx cowsay
 
 and npx will find the package location.
 
+npx 会找到包的位置。
+
 ### The package.json guide
+### package.json 指南
 
 The package.json file is a key element in lots of app codebases based on the Node.js ecosystem.
 
+在许多基于 Node.js 生态系统的应用程序代码库中，package.json 文件是一个关键元素。
+
 If you work with JavaScript, or you’ve ever interacted with a JavaScript project, Node.js or a front-end project, you surely met the `package.json` file.
+
+如果你使用 JavaScript，或者你曾经与 JavaScript 项目、Node.js 或前端项目进行过交互，那么你肯定会遇到 `package.json` 文件。
 
 What’s that for? What should you know about it, and what are some of the cool things you can do with it?
 
+那是干什么的？你应该知道什么，你能用它做什么?
+
 The `package.json` file is kind of a manifest for your project. It can do a lot of things, completely unrelated. It’s a central repository of configuration for tools, for example. It’s also where `[npm][80]`and `[yarn][81]`store the names and versions of the package it installed.
+
+`packcage.json` 文件是项目的清单。它可以做很多事情，完全不相关。例如，它是工具配置的中央存储库。它也是 `npm][80]` 和 `[yarn][81]` 存储它安装的包的名称和版本的地方。
 
 #### The file structure
 
+#### 文件结构
+
 Here’s an example package.json file:
+
+下面是一个 package.json 文件示例：
 
 ```
 {
@@ -1148,23 +1996,114 @@ Here’s an example package.json file:
 
 It’s empty! There are no fixed requirements of what should be in a `package.json` file, for an application. The only requirement is that it respects the JSON format, otherwise it cannot be read by programs that try to access its properties programmatically.
 
+它是空的！对于应用程序，`packcae.json` 文件中应包含你的内容没有固定的要求。唯一的要求是它尊重 JSON 格式，否则试图以编程方式访问其属性的程序无法读取它。
+
 If you’re building a Node.js package that you want to distribute over `npm` things change radically, and you must have a set of properties that will help other people use it. We’ll see more about this later on.
+
+如果你正在构建 Node.js 包，并希望将其分发到 `npm` 上，那么情况会发生根本性的变化，你必须有一组有助于其他人使用它的属性。稍后我们会看到更多关于这方面的内容。
 
 This is another package.json:
 
+这是另一个 package.json:
+
 ```
-{  "name": "test-project"}
+{
+    "name": "test-project"
+}
 ```
 
 It defines a `name` property, which tells the name of the app, or package, that’s contained in the same folder where this file lives.
 
+它定义了一个 `name` 属性，该属性告诉此文件所在的文件夹中包含应用程序或包的名称。
+
 Here’s a much more complex example, which I extracted this from a sample Vue.js application:
 
+下面是一个更复杂的示例，我从一个示例 Vue.js 应用程序中提取了这个示例：
+
 ```
-{  "name": "test-project",  "version": "1.0.0",  "description": "A Vue.js project",  "main": "src/main.js",  "private": true,  "scripts": {    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",    "start": "npm run dev",    "unit": "jest --config test/unit/jest.conf.js --coverage",    "test": "npm run unit",    "lint": "eslint --ext .js,.vue src test/unit",    "build": "node build/build.js"  },  "dependencies": {    "vue": "^2.5.2"  },  "devDependencies": {    "autoprefixer": "^7.1.2",    "babel-core": "^6.22.1",    "babel-eslint": "^8.2.1",    "babel-helper-vue-jsx-merge-props": "^2.0.3",    "babel-jest": "^21.0.2",    "babel-loader": "^7.1.1",    "babel-plugin-dynamic-import-node": "^1.2.0",    "babel-plugin-syntax-jsx": "^6.18.0",    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",    "babel-plugin-transform-runtime": "^6.22.0",    "babel-plugin-transform-vue-jsx": "^3.5.0",    "babel-preset-env": "^1.3.2",    "babel-preset-stage-2": "^6.22.0",    "chalk": "^2.0.1",    "copy-webpack-plugin": "^4.0.1",    "css-loader": "^0.28.0",    "eslint": "^4.15.0",    "eslint-config-airbnb-base": "^11.3.0",    "eslint-friendly-formatter": "^3.0.0",    "eslint-import-resolver-webpack": "^0.8.3",    "eslint-loader": "^1.7.1",    "eslint-plugin-import": "^2.7.0",    "eslint-plugin-vue": "^4.0.0",    "extract-text-webpack-plugin": "^3.0.0",    "file-loader": "^1.1.4",    "friendly-errors-webpack-plugin": "^1.6.1",    "html-webpack-plugin": "^2.30.1",    "jest": "^22.0.4",    "jest-serializer-vue": "^0.3.0",    "node-notifier": "^5.1.2",    "optimize-css-assets-webpack-plugin": "^3.2.0",    "ora": "^1.2.0",    "portfinder": "^1.0.13",    "postcss-import": "^11.0.0",    "postcss-loader": "^2.0.8",    "postcss-url": "^7.2.1",    "rimraf": "^2.6.0",    "semver": "^5.3.0",    "shelljs": "^0.7.6",    "uglifyjs-webpack-plugin": "^1.1.1",    "url-loader": "^0.5.8",    "vue-jest": "^1.0.2",    "vue-loader": "^13.3.0",    "vue-style-loader": "^3.0.1",    "vue-template-compiler": "^2.5.2",    "webpack": "^3.6.0",    "webpack-bundle-analyzer": "^2.9.0",    "webpack-dev-server": "^2.9.1",    "webpack-merge": "^4.1.0"  },  "engines": {    "node": ">= 6.0.0",    "npm": ">= 3.0.0"  },  "browserslist": [    "> 1%",    "last 2 versions",    "not ie &lt;= 8"  ]}
+{
+    "name":"test-project",
+    "version":"1.0.0",
+    "description":"A Vue.js project",
+    "main":"src/main.js",
+    "private":true,
+    "scripts":{
+        "dev":"webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
+        "start":"npm run dev",
+        "unit":"jest --config test/unit/jest.conf.js --coverage",
+        "test":"npm run unit",
+        "lint":"eslint --ext .js,.vue src test/unit",
+        "build":"node build/build.js"
+    },
+    "dependencies":{
+        "vue":"^2.5.2"
+    },
+    "devDependencies":{
+        "autoprefixer":"^7.1.2",
+        "babel-core":"^6.22.1",
+        "babel-eslint":"^8.2.1",
+        "babel-helper-vue-jsx-merge-props":"^2.0.3",
+        "babel-jest":"^21.0.2",
+        "babel-loader":"^7.1.1",
+        "babel-plugin-dynamic-import-node":"^1.2.0",
+        "babel-plugin-syntax-jsx":"^6.18.0",
+        "babel-plugin-transform-es2015-modules-commonjs":"^6.26.0",
+        "babel-plugin-transform-runtime":"^6.22.0",
+        "babel-plugin-transform-vue-jsx":"^3.5.0",
+        "babel-preset-env":"^1.3.2",
+        "babel-preset-stage-2":"^6.22.0",
+        "chalk":"^2.0.1",
+        "copy-webpack-plugin":"^4.0.1",
+        "css-loader":"^0.28.0",
+        "eslint":"^4.15.0",
+        "eslint-config-airbnb-base":"^11.3.0",
+        "eslint-friendly-formatter":"^3.0.0",
+        "eslint-import-resolver-webpack":"^0.8.3",
+        "eslint-loader":"^1.7.1",
+        "eslint-plugin-import":"^2.7.0",
+        "eslint-plugin-vue":"^4.0.0",
+        "extract-text-webpack-plugin":"^3.0.0",
+        "file-loader":"^1.1.4",
+        "friendly-errors-webpack-plugin":"^1.6.1",
+        "html-webpack-plugin":"^2.30.1",
+        "jest":"^22.0.4",
+        "jest-serializer-vue":"^0.3.0",
+        "node-notifier":"^5.1.2",
+        "optimize-css-assets-webpack-plugin":"^3.2.0",
+        "ora":"^1.2.0",
+        "portfinder":"^1.0.13",
+        "postcss-import":"^11.0.0",
+        "postcss-loader":"^2.0.8",
+        "postcss-url":"^7.2.1",
+        "rimraf":"^2.6.0",
+        "semver":"^5.3.0",
+        "shelljs":"^0.7.6",
+        "uglifyjs-webpack-plugin":"^1.1.1",
+        "url-loader":"^0.5.8",
+        "vue-jest":"^1.0.2",
+        "vue-loader":"^13.3.0",
+        "vue-style-loader":"^3.0.1",
+        "vue-template-compiler":"^2.5.2",
+        "webpack":"^3.6.0",
+        "webpack-bundle-analyzer":"^2.9.0",
+        "webpack-dev-server":"^2.9.1",
+        "webpack-merge":"^4.1.0"
+    },
+    "engines":{
+        "node":"&gt;= 6.0.0",
+        "npm":"&gt;= 3.0.0"
+    },
+    "browserslist":[
+        "&gt; 1%",
+        "last 2 versions",
+        "not ie &lt;= 8"
+    ]
+}
 ```
 
 there are **lots** of things going on here:
+
+这里发生了许多事情：
 
 -   `name` sets the application/package name
 -   `version` indicates the current version
@@ -1177,7 +2116,20 @@ there are **lots** of things going on here:
 -   `engines` sets which versions of Node this package/app works on
 -   `browserslist` is used to tell which browsers (and their versions) you want to support
 
+- `name` 设置应用程序/包名称
+- `version` 表示当前版本
+- `description` 应用程序包的简要说明
+- `main` 设置应用程序的入口
+- `private` 如果设置为 `true`，则可以防止在 `npm` 上意外发布应用程序/包
+- `scripts` 定义一组可以运行的 node 脚本
+- `dependencies` 设置作为依赖项安装的 `npm` 包的列表
+- `devDependencies` 设置作为开发依赖项安装的 `npm` 包的列表
+- `engines` 设置此包/应用在哪个版本的 Node 上工作
+- `browserslist` 用于讲述你想要支持哪些版本的浏览器（及其版本）
+
 All those properties are used by either `npm` or other tools that we can use.
+
+所有这些属性都由 `npm` 或其它我们可以使用的工具使用。
 
 #### Properties breakdown
 
@@ -4695,3 +5647,5 @@ I hope this introduction to Node.js will help you get started using it, or help 
 [121]: https://nodejs.org/api/stream.html
 [122]: https://github.com/mysqljs/mysql
 [123]: https://pugjs.org/api/express.html
+
+
