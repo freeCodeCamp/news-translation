@@ -1,50 +1,50 @@
 > -   原文地址：[You should never ever run directly against Node.js in production. Maybe.](https://www.freecodecamp.org/news/you-should-never-ever-run-directly-against-node-js-in-production-maybe-7fdfaed51ec6/)
 > -   原文作者：[Burke Holland](https://www.freecodecamp.org/news/author/burkeholland/)
-> -   译者：
+> -   译者：samwangdd
 > -   校对者：
 
 ![You should never ever run directly against Node.js in production. Maybe.](https://cdn-media-1.freecodecamp.org/images/1*Lh8JaRfiqPj9bTrd8a3xgQ.png)
 
-Sometimes I wonder if I know much of anything at all.
+我经常会怀疑自己是否一无所知。
 
-Just a few weeks ago I was talking to a friend who mentioned off-hand, “you would never run an application directly against Node in production”. I nodded vigorously to signal that I _also_ would never ever run against Node in production because……hahaha…….everyone knows that. But I didn’t know that! Should I have known that?!?? AM I STILL ALLOWED TO PROGRAM?
+就在几周前，我跟一个朋友聊天时，他随口提到：“在生产环境里，你绝对不要直接在 Node 上运行程序。”我点头如捣蒜，表示我也不会这样做，因为...哈哈哈，你懂的。但实际上我并不知道真正的原因！我早该知道吗？我还可以编程吗？
 
-If I was to draw a Venn Diagram of what I know vs what I feel like everyone else knows, it would look like this……
+如果把我知道的和我觉得其他人都知道的画一个韦恩图，它大概长这样：
 
 ![](https://cdn-media-1.freecodecamp.org/images/1*ThJbM2JMjrnTuHczo0tLqw.png)
 
-By the way, that tiny dot gets smaller the older I get.
+而且，随着我年龄的增长，那个点会越来越小。
 
-There is a better diagram created by [Alicia Liu][1] that kind of changed my life. She says that it’s more like this……
+[Alicia Liu][1] 则画出了更加贴切的图表，它改变了我的生活。她说它更像这样...
 
 ![](https://cdn-media-1.freecodecamp.org/images/1*N7vv39ri9yC0l6krsSFlQA.png)
 
-I love this diagram so much because I want it to be true. I don’t want to spend the rest of my life as a tiny, shrinking blue dot of insignificance.
+我非常欣赏这个图表，因为我期望它是真的。我不想看到我花费余生精力，仍只是个无关紧要的小蓝点。
 
-SO DRAMATIC. Blame Pandora. I don’t control what gets played next while I’m writing this article and [Dashboard Confessional][2] is a helluva drug.
+如此戏精。责怪潘多拉。当我在写这篇文章的时候不能控制接下来会写到什么，但是 [Dashboard Confessional][2] 是一种毒药。
 
-Well, assuming that Alicia’s diagram is true, I would like to share with you what I \_now_know about running Node apps in production. Perhaps our relative Venn Diagrams don’t overlap on this subject.
+好吧，假如 Alicia 的图表是正确的，我想与你分享我所知道关于在生产环境运行 Node 应用的知识。也许我们相对的韦恩图在这个问题上并不重复。
 
-First off, let’s address the statement “never run apps directly against Node in production”.
+首先，让我们解决“在生产环境里，你绝对不要直接在 Node 上运行程序”这一说法。
 
-#### Never run directly against Node in production
+#### 在生产环境里，你绝对不要直接在 Node 上运行程序
 
-Maybe. But maybe not. Let’s talk about the reasoning behind this statement. First, let’s look at why not.
+可能。但也可能不是。我们来谈谈这一说法背后的原因。首先，让我们看看为什么不要。
 
-Say we have a simple Express server. The simplest Express server I can think of……
+假设我们有一个简单的 Express 服务。我能想到的最简单的Express 服务...... 
 
 ```js
 const express = require('express');
 const app = express();
 const port = process.env.PORT || 3000;
 
-// viewed at http://localhost:3000
+// 在 http://localhost:3000 中查看
 app.get('/', function (req, res) {
-    res.send('Again I Go Unnoticed');
+    res.send('我再次被忽略');
 });
 ```
 
-We would run this with a start script in the `package.json` file.
+我们要在 `package.json` 文件中通过一个启动脚本来运行
 
 ```plain
 "scripts": {
@@ -55,11 +55,11 @@ We would run this with a start script in the `package.json` file.
 
 ![](https://cdn-media-1.freecodecamp.org/images/1*VceC98Qk5zKqzBmiu1szDQ.png)
 
-There are sort of two problems here. The first is a development problem and the second is a production problem.
+这里存在两个问题。第一是开发问题，第二是生产问题。
 
-The development problem is that when we change the code, we have to stop and start the application to get our changes picked up.
+开发环境问题是每当我们修改了代码，我们不得不暂停程序再重新启动应用，才能获得我们的更改。
 
-To solve that, we usually use some sort of Node process manager like `supervisor` or `nodemon`. These packages will watch our project and restart our server whenever we make changes. I usually do that like this……
+为了解决这个问题，我们通常使用某种 Node 进程管理工具，比如：`supervisor`  `nodemon`。这些工具将会监听我们的项目，每当我们有任何改变都会重启我们的服务。我通常这样使用......
 
 ```plain
 "scripts": {  "dev": "npx supervisor index.js",  "start": "node index.js"}
