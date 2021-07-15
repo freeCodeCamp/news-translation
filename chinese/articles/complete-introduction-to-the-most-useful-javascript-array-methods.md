@@ -1,27 +1,27 @@
 > -   原文地址：[JavaScript Array Methods Tutorial – The Most Useful Methods Explained with Examples](https://www.freecodecamp.org/news/complete-introduction-to-the-most-useful-javascript-array-methods/)
 > -   原文作者：Yogesh Chavan
-> -   译者：
+> -   译者：WhoIsTheSuperGuy
 > -   校对者：
 
 ![JavaScript Array Methods Tutorial – The Most Useful Methods Explained with Examples](https://images.unsplash.com/photo-1566837945700-30057527ade0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MXwxMTc3M3wwfDF8c2VhcmNofDE5fHxjb2Rpbmd8ZW58MHx8fA&ixlib=rb-1.2.1&q=80&w=2000)
 
-If you're a JavaScript developer and want to improve your coding, then you should be familiar with the most commonly used ES5 and ES6+ array methods.
+如果你想要进一步提高自己的JavaScript编程水平，那么你一定要熟练掌握最常使用的ES5和ES6+的数组方法。
 
-These methods make coding a lot easier and also make your code look clean and easy to understand.
+这些数组方法能帮助你轻松编程，同时让代码更加简洁易懂。
 
-So in this article, we will explore some of the most popular and widely used array methods. So let's get started.
+因此，本文列举了最普遍、最常使用的数组方法。
 
-## The Array.forEach Method
+## Array.forEach 方法
 
-The  `Array.forEach`  method has the following syntax:
+`Array.forEach` 方法有以下句法syntax：
 
 ```js
 Array.forEach(callback(currentValue [, index [, array]])[, thisArg]);
 ```
 
-The  `forEach`  method executes a provided function once for every element in the array.
+`forEach` 方法对于数组里的每一个元素都执行一次给定的函数。
 
-Take a look at the below code:
+例如：
 
 ```js
 const months = ['January', 'February', 'March', 'April'];
@@ -37,11 +37,12 @@ April
 
 ```
 
-Here's a  [Code Pen Demo][1].
 
-Here, inside the  `forEach`  loop callback function, each element of the array is automatically passed as the first parameter of the function.
+[代码演示][1]在此。
 
-The equivalent for loop code for the above example looks like this:
+在 `forEach` 循环回调函数中，数组中的每个元素都会自动作为第一个参数传参到函数中。
+
+上述例子中的循环代码也可以写成这样：
 
 ```js
 const months = ['January', 'February', 'March', 'April'];
@@ -56,11 +57,11 @@ April
 
 ```
 
-Here's a  [Code Pen Demo][2].
+[代码演示][2]在此。
 
-The thing you need to keep in mind is that the  `forEach`  method does not return any value.
+需要注意的是，`forEach` 方法不返回任何值。
 
-Take a look at the below code:
+例如：
 
 ```js
 const months = ['January', 'February', 'March', 'April'];
@@ -70,14 +71,14 @@ const returnedValue = months.forEach(function (month) {
 
 ```
 
-Here's a  [Code Pen Demo][3].
+[代码演示][3]在此。
 
-> _Note that_ `_forEach_` _is only used to loop through the array and perform some processing or logging. It does not return any value, even if you explicitly return a value from the callback function (this means that the returned value comes as_ `undefined` _in the above example)._
+> _注意： _`_forEach_` _只用于循环数组和执行一些处理或日志记录。它不返回任何值，即使你想要从回调函数中显式地返回值也不行（这意味着在上述例子中返回的值是_`undefined`_）。_
 
-In all the above examples, we have used only the first parameter of the callback function. But the callback function also receives two additional parameters, which are:
+在上述所有例子中，我们只用了回调函数的第一个参数。但回调函数还可以有另外两个参数：
 
--   index - the index of the element which is currently being iterated
--   array - original array which we're looping over
+-   index - 当前迭代的元素索引
+-   array - 正在循环的原始数组
 
 ```js
 const months = ['January', 'February', 'March', 'April'];
@@ -92,27 +93,27 @@ April 3 ["January", "February", "March", "April"]
 
 ```
 
-Here's a  [Code Pen Demo][4].
+[代码演示][4]在此。
 
-Depending on the requirement, you may find it useful to use the  `index`  and  `array`  parameters.
+有时候根据需要，`index` 和 `array` 参数可能会很有用。
 
-### Advantages of using forEach instead of a for loop
+### 在 for 循环中使用 forEach 的优势
 
--   Using a  `forEach`  loop makes your code shorter and easier to understand
--   When using a  `forEach`  loop, we don't need to keep track of how many elements are available in the array. So it avoids the creation of an extra counter variable.
--   Using a  `forEach`  loop makes code easy to debug because there are no extra variables for looping through the array
--   The  `forEach`  loop automatically stops when all the elements of the array are finished iterating.
+-   使用 `forEach` 能使你的代码更简洁易懂
+-   当使用 `forEach`  循环时，我们不需要跟踪数组里有多少available元素，因此可以避免创建额外的计数变量。
+-   使用 `forEach` 循环使代码更容易调试，因为没有额外的变量用于数组循环。
+-   当数组里所有的元素都迭代完之后，`forEach`  循环会自动停止。
 
-### Browser Support
+### 浏览器支持Browser Support
 
--   All modern browsers and Internet Explorer (IE) version 9 and above
--   Microsoft Edge version 12 and above
+-   所有主流浏览器和版本9及以上的IE浏览器
+-   版本12及以上的Microsoft Edge浏览器
 
-## The Array.map Method
+## Array.map 方法
 
-The Array map method is the most useful and widely used array method among all other methods.
+Array map 方法是所有其他数组方法里最实用、最常用的方法。
 
-The  `Array.map`  method has the following syntax:
+`Array.map` 方法的句法如下：
 
 ```js
 Array.map(function callback(currentValue[, index[, array]]) {
@@ -120,9 +121,9 @@ Array.map(function callback(currentValue[, index[, array]]) {
 }[, thisArg])
 ```
 
-The  `map`  method executes a provided function once for every element in the array and it  **returns a new transformed array.**
+`map` 方法对于数组中每一个元素，执行一次给定的函数，并**返回一个新的转换后的数组**。
 
-Take a look at the below code:
+看下面这段代码:
 
 ```js
 const months = ['January', 'February', 'March', 'April'];
@@ -132,11 +133,11 @@ const transformedArray = months.map(function (month) {
 
 ```
 
-Here's a  [Code Pen Demo][5].
+[代码演示][5]在此。
 
-In the above code, inside the callback function, we’re converting each element to uppercase and returning it.
+在上述代码中，我们在回调函数内部把每个元素转换成大写，并返回它们。
 
-The equivalent for loop code for the above example looks like this:
+上述例子的循环代码也可以写成这样：
 
 ```js
 const months = ['January', 'February', 'March', 'April'];
@@ -147,24 +148,24 @@ for(let i = 0; i < months.length; i++) {
 
 ```
 
-Here's a  [Code Pen Demo][6].
+[代码演示][6]在此。
 
-Using  `map`  helps to avoid creating a separate  `converted`  array beforehand for storing the converted elements. So it saves memory space and also the code looks much cleaner using array  `map`, like this:
+使用 `map` 方法使我们无需提前创建一个额外的 `converted` 数组来存储转换后的元素。因此它节约了内存空间，同时也使代码看上去更加简洁:
 
 ```js
 const months = ['January', 'February', 'March', 'April'];
 
 ```
 
-Here's a  [Code Pen Demo][7].
+[代码演示][7]在此。
 
-Note that the  `map`  method returns a new array that is of the exact same length as the original array.
+注意，`map` 方法会返回一个和原数组等长的新数组。
 
-The difference between the  `forEach`  and  `map`  methods is that  `forEach`  is only used for looping and does not return anything back. On the other hand, the  `map`  method returns a new array that is of the exact same length as the original array.
+`forEach`和`map`方法的不同之处在于：`forEach`只用于循环，而不返回任何值，而`map`方法会返回一个和原数组等长的新数组。
 
-Also, note that  `map`  does not change the original array but returns a new array.
+同时也要注意`map`不会改变原数组，而是返回一个新的数组。
 
-Take a look at the below code:
+看下面这段代码：
 
 ```js
 const users = [
@@ -187,11 +188,11 @@ const usersList = users.map(function (user) {
 
 ```
 
-Here's a  [Code Pen Demo][8].
+[代码演示][8]在此.
 
-Here, by using the array of objects and  `map`  methods, we're easily generating a single array with first and last name concatenated.
+在这段代码中，通过使用`map`方法和一个包含对象的数组，我们可以轻松生成一个姓名联接在一起的新数组。
 
-In the above code, we're using the  `+`  operator to concatenate two values. But it's much more common to use ES6 template literal syntax as shown below:
+在上述代码中，我们使用`+`符号来联接两个值。但是更常见的用法是使用 ES6 模板文字语法：
 
 ```js
 const users = [
@@ -214,9 +215,9 @@ const usersList = users.map(function (user) {
 
 ```
 
-Here's a  [Code Pen Demo][9].
+[代码演示][9]在此.
 
-The array  `map`  method is also useful, if you want to extract only specific data from the array like this:
+当你只想从数组中提取特定数据时，数组`map`方法也是有用的：
 
 ```js
 const users = [
@@ -242,12 +243,11 @@ const surnames = users.map(function (user) {
 
 ```
 
-Here's a  [Code Pen Demo][10].
+[代码演示][10]在此.
 
-In the above code, we're extracting only the last names of each user and storing them in an array.
+在上述代码中，我们只提取了每个用户的名，并将它们存储在一个新的数组中。
 
-We can even use  `map`  to generate an array with dynamic content as shown below:
-
+我们也可以使用`map`来生成有动态内容的数组，如下所示：
 ```js
 const users = [
   {
@@ -269,35 +269,35 @@ const usersList = users.map(function (user) {
 
 ```
 
-Here's a  [Code Pen Demo][11].
+[代码演示][11]在此.
 
-Note that in the above code, we're not changing the original  `users`  array. We're creating a new array with dynamic content because  `map`  always returns a new array.
+上述代码中，我们没有改变原始的`users`数组，而是创建了一个有动态内容的新数组，因为`map`方法始终会返回一个新的数组。
 
-### Advantages of using the map method
+### 使用map方法的优势
 
--   It helps quickly generate a new array without changing the original array
--   It helps generate an array with dynamic content based on each element
--   It allows us to quickly extract any element of the array
--   It generates an array with the exact same length as the original array
+-   它可以在不改变原数组的情况下快速生成新的数组
+-   它可以基于每个元素生成有动态内容的新数组
+-   它可以快速提取数组中的任何元素
+-   它生成和原数组等长的数组
 
-**Browser Support:**
+**浏览器支持：**
 
--   All modern browsers and Internet Explorer (IE) version 9 and above
--   Microsoft Edge version 12 and above
+-   所有主流浏览器和版本9及以上的IE浏览器
+-   版本12及以上的Microsoft Edge浏览器
 
-## The Array.find Method
+## Array.find方法
 
-The  `Array.find`  method has the following syntax:
+`Array.find` 方法的句法如下：
 
 ```js
 Array.find(callback(element[, index[, array]])[, thisArg])
 ```
 
-> _The_ `_find_` _method returns the_ `_value_` _of the_  `_first element_` _in the array that satisfies the provided test condition._
+> _ `_find_`_ _方法返回数组中第一个满足给定条件的元素的值。_
 
-The  `find`  method takes a callback function as the first argument and executes the callback function for every element of the array. Each array element value is passed as the first parameter to the callback function.
+`find`方法第一个参数为回调函数，并且对每一个数组元素执行这个回调函数。每个数组元素的值作为第一个参数传入回调函数中。  
 
-Suppose, we have a list of employees like this:
+假设我们有一个员工列表：
 
 ```js
 const employees = [
@@ -308,7 +308,7 @@ const employees = [
 ];
 ```
 
-and we want to get the record for the employee whose name is  `John`. In this case, we can use the  `find`  method as shown below:
+我们可以使用`find`方法获取名为`John`的员工记录：
 
 ```js
 const employee = employees.find(function (employee) {
@@ -317,11 +317,11 @@ const employee = employees.find(function (employee) {
 
 ```
 
-Here's a  [Code Pen Demo][12].
+[代码演示][12]在此.
 
-Even though there is  `"John Carte"`  in the list, the  `find`  method will stop when it finds the first match. So it will not return the object with the name  `"John Carte".`
+即使列表中有`"John Carte"`，`find`方法在找到第一个匹配值后就会停止。因此，它不会返回名为`"John Carte"` 的记录。 
 
-The equivalent for loop code for the above example looks like this:
+上述例子的循环代码也可以写成这样：
 
 ```js
 const employees = [
@@ -340,29 +340,29 @@ for(let i = 0; i < employees.length; i++) {
 
 ```
 
-Here's a  [Code Pen Demo][13].
+[代码演示][13]在此.
 
-As you can see, using normal for loop makes the code much larger and harder to understand. But using the  `find`  method, we can write the same code in an easy to understand way.
+常规循环使代码看起来又冗长又难懂，使用`find`方法更简洁易懂。
 
-### Advantages of using the find method
+### 使用find方法的优势
 
--   It allows us to quickly find any element without writing a lot of code
--   It stops looping as soon as it finds a match so there is no need for an extra break statement
+-   它可以用简洁的代码快速地找到任一元素
+-   它一找到匹配值就会停止循环，不需要额外的break语句
 
-**Browser Support:**
+**浏览器支持：**
 
--   All modern browsers except Internet Explorer (IE)
--   Microsoft Edge version 12 and above
+-   除了IE浏览器之外的所有主流浏览器
+-   版本12及以上的Microsoft Edge浏览器
 
-## The Array.findIndex Method
+## Array.findIndex方法
 
-The  `Array.findIndex`  method has the following syntax:
+`Array.findIndex`方法的句法如下：
 
 ```js
 Array.findIndex(callback(element[, index[, array]])[, thisArg])
 ```
 
-The  `findIndex`  method returns the  **index**  of the first element in the array  **that satisfies the provided test condition**. Otherwise, it returns  `-1`, indicating that no element passed the test.
+`findIndex`方法返回数组中**满足给定条件**的第一个元素的**索引**。如果没有满足条件的元素，该方法会返回`-1`。
 
 ```js
 const employees = [
@@ -377,11 +377,11 @@ const index = employees.findIndex(function (employee) {
 
 ```
 
-Here's a  [Code Pen Demo][14].
+[代码演示][14]如下.
 
-Here we get the output as  **1**  which is the index of the first object with the name  `John`. Note that the index starts with zero.
+在这段代码中，我们得到的返回值是**1**，也就是名字为`John`的第一个元素的索引。注意索引是从0开始。
 
-The equivalent for loop code for the above example looks like this:
+上述例子的循环代码也可以写成这样：
 
 ```js
 const employees = [
@@ -400,30 +400,30 @@ for(let i = 0; i < employees.length; i++) {
 
 ```
 
-Here's a  [Code Pen Demo][15].
+[代码演示][15]在此.
 
-### Advantages of using the findIndex method
+### 使用 findIndex 方法的优势
 
--   It allows us to quickly find the index of an element without writing a lot of code
--   It stops looping as soon as it finds a match so there is no need for an extra break statement
--   We can find the index using the array  `find`  method also, but using  `findIndex`  makes it easy and avoids creating extra variables to store the index
+-   它可以用简洁的代码快速地找到任一元素的索引
+-   它一找到匹配值就会停止循环，不需要额外的break语句
+-   我们也可以使用数组的`find`方法找到索引，但是使用`findIndex`方法更简单，避免了创建额外的变量来存储索引
 
-**Browser Support:**
+**浏览器支持：**
 
--   All modern browsers except Internet Explorer (IE)
--   Microsoft Edge version 12 and above
+-   除了IE浏览器之外的所有主流浏览器
+-   版本12及以上的Microsoft Edge浏览器
 
-## The Array.filter Method
+## Array.filter 方法
 
-The  `Array.filter`  method has the following syntax:
+`Array.filter`方法的句法如下：
 
 ```js
 Array.filter(callback(element[, index[, array]])[, thisArg])
 ```
 
-The  `filter`  method returns  `a new array`  with all the elements that satisfy the provided test condition.
+`filter`方法返回新数组，包含所有满足给定条件的元素。
 
-The  `filter`  method takes a callback function as the first argument and executes the callback function for every element of the array. Each array element value is passed as the first parameter to the callback function.
+`filter`方法第一个参数为回调函数，并且对每一个数组元素执行这个回调函数。每个数组元素的值作为第一个参数传入回调函数中。
 
 ```js
 const employees = [
@@ -438,17 +438,17 @@ const employee = employees.filter(function (employee) {
 
 ```
 
-Here's a  [Code Pen Demo][16].
+[代码演示][16]在此.
 
-As can be seen in the above code, using  `filter`  helps to find all the elements from the array that match the specified test condition.
+上述代码中，使用`filter` 来找到数组中所有满足给定条件的元素。
 
-So using  `filter`  does not stop when it finds a particular match but keeps checking for other elements in the array that match the condition. Then it returns all the matching elements from the array.
+因此，`filter`方法在找到一个匹配值后不会停止，而是继续检查数组中的其他元素是否匹配，并最终返回数组中所有匹配的元素。
 
-> The main difference between  `find`  and  `filter`  is that  `find`  only returns the first matching element of the array, but using  `filter`  returns all the matching elements from the array.
+> `find` 和`filter`的主要区别在于，`find`只返回数组中第一个匹配的元素，而`filter` 返回数组中所有匹配的元素。
 
-Note that the  `filter`  method always returns an array. If no element passes the test condition, an empty array will be returned.
+注意，`filter`方法总是会返回一个数组。如果没有匹配的元素，则会返回一个空数组。
 
-The equivalent for loop code for the above example looks like this:
+上述例子的循环代码也可以写成这样：
 
 ```js
 const employees = [
@@ -466,30 +466,30 @@ for(let i = 0; i < employees.length; i++) {
 
 ```
 
-Here's a  [Code Pen Demo][17].
+[代码演示][17]在此.
 
-### Advantages of using the filter method
+### 使用 filter 方法的优势
 
--   It allows us to quickly find all the matching elements from the array
--   It always returns an array even if there is no match, so it avoids writing extra  `if`  conditions
--   It avoids the need of creating an extra variable to store the filtered elements
+-   它可以快速找到数组中的所有匹配元素
+-   即使没有满足条件的元素，它也始终会返回一个数组，因此不需要写额外的`if`条件
+-   它避免了创建额外的变量来存储匹配到的元素
 
-**Browser Support:**
+**浏览器支持：**
 
--   All modern browsers and Internet Explorer (IE) version 9 and above
--   Microsoft Edge version 12 and above
+-   所有主流浏览器和版本9及以上的IE浏览器
+-   版本12及以上的Microsoft Edge浏览器
 
-## The Array.every Method
+## Array.every 方法
 
-The  `Array.every`  method has the following syntax:
+`Array.every`方法的句法如下：
 
 ```js
 Array.every(callback(element[, index[, array]])[, thisArg])
 ```
 
-The  `every`  method tests whether all elements in the array pass the provided test conditions and returns a boolean  `true`  or  `false`  value.
+`every`方法检查数组中所有元素是否都满足给定条件，并返回`true`或`false`的布尔值。
 
-Suppose we have an array of numbers and we want to check if every element of the array is a positive number. We can use the  `every`  method to achieve it.
+假设我们有一组数字，如果我们想检查数组中是否所有值都是正数，就可以使用`every`方法。
 
 ```js
 let numbers = [10, -30, 20, 50];
@@ -501,7 +501,7 @@ numbers = [10, 30, 20, 50];
 
 ```
 
-Imagine you have a registration form, and you want to check if all of the required fields are entered or not before submitting the form. You can use the  `every`  method to check for each field value easily.
+假设你有一份注册表，你想在提交表单之前检查一下是否输入了所有所需的字段，使用`every`方法就可以很简单地做到。
 
 ```js
 window.onload = function () {
@@ -520,36 +520,36 @@ window.onload = function () {
 <span class="token punctuation" style="box-sizing: inherit; margin: 0px; padding: 0px; border: 0px; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit; font-family: inherit; font-size: 14px; vertical-align: baseline; color: rgb(153, 153, 153);">}</span>
 ```
 
-Here's a  [Code Pen Demo][18].
+[代码演示][18]在此.
 
-Here, inside the callback function of the  `every`  method, we’re checking if each field value is not empty and returning a boolean value.
+在`every`方法的回调函数内，我们检查了每个字段是否为空，并返回布尔值。
 
-In the above code, the  `every`  method returns  `true`  if, for all the elements in the  `fields`  array, the callback function returns a  `true`  value.
+上述代码中，如果对于`fields`数组里的所有元素，回调函数都返回`true`值，那么`every`方法返回`true`值。
 
-If the callback function returns a  `false`  value for any of the elements in the  `fields`  array, then the  `every`  method will return  `false`  as the result.
+如果对于`fields`数组中任一元素，回调函数返回了`false`值，那么`every`方法最终就会返回`false`值。
 
-### Advantage of using the every method
+### 使用every方法的优势
 
--   It allows us to quickly check if all the elements match certain criteria without writing a lot of code
+-   它可以用简洁的代码快速地检查所有元素是否符合特定的条件
 
-### Browser Support:
+### 浏览器支持
 
--   All modern browsers and Internet Explorer (IE) version 9 and above
--   Microsoft Edge version 12 and above
+-   所有主流浏览器和版本9及以上的IE浏览器
+-   版本12及以上的Microsoft Edge浏览器
 
-## The Array.some Method
+## Array.some方法
 
-The  `Array.some`  method has the following syntax:
+`Array.some`方法的句法如下：
 
 ```js
  Array.some(callback(element[, index[, array]])[, thisArg]
 ```
 
-The  `some`  method tests whether at least one element in the array passes the test condition given by the provided function and returns a boolean  `true`  or  `false`  value.
+`some`方法检查数组中是否至少有一个元素满足给定条件，并返回`true`或`false`的布尔值。
 
-It returns  `true`  once it finds the first match and returns  `false`  if there is no match.
+当找到了第一个匹配值，它就会立刻返回`true`。如果整个数组没有匹配值，就返回`false`。
 
-Suppose we have an array of numbers and we want to check if the array contains at least one positive element. We can use the  `some`  method to achieve it.
+假设我们有一组数字，如果我们想检查数组中是否至少有一个数为正数，就可以使用`some`方法。
 
 ```js
 let numbers = [-30, 40, 20, 50];
@@ -561,13 +561,13 @@ numbers = [-10, -30, -20, -50];
 
 ```
 
-There are some useful scenarios for using the  `some`  method.
+以下是一些使用`some`方法的有效场景。
 
-### `Some`  method example 1:
+### `Some` 方法例1:
 
-Let's say we have a list of employees and we want to check if a particular employee is present in that array or not. We also want to get the index position of that employee if the employee is found.
+假设有一个员工列表，我们想要检查特定员工是否在该数组内，并且如果该员工在数组内，我们想得到他的索引位置。
 
-So instead of using the  `find`  and  `findIndex`  methods separately, we can use the  `some`  method to do both of these.
+我们可以使用`some`方法来达到这两个要求，而无需分别使用`find`和`findIndex`方法。
 
 ```js
 const employees = [
@@ -587,9 +587,9 @@ const employee = employees.some(function (employee, index) {
 
 ```
 
-Here's a  [Code Pen Demo][19].
+[代码演示][19]在此.
 
-### `Some`  method example 2:
+### `Some` 方法例2:
 
 The array  `forEach`,  `map`, and  `filter`  methods run from start to finish until all of the elements of the array are processed. There is no way of stopping of breaking out of the loop, once a particular element is found.
 
@@ -633,7 +633,7 @@ const sum = numbers.reduce(function(accumulator, number) {
 
 ```
 
-Here's a  [Code Pen Demo][20].
+[代码演示][20]在此.
 
 The  `reduce`  method accepts a callback function that receives  `accumulator`,  `number`,  `index`  and  `array`  as the values. In the above code, we’re using only  `accumulator`  and  `number`.
 
@@ -662,7 +662,7 @@ const sum = numbers.reduce(function (accumulator, number) {
 
 ```
 
-Here's a  [Code Pen Demo][21].
+[代码演示][21]在此.
 
 Here, the  `accumulator`  will contain the first element of the array and  `number`  will contain the next element of the array (  `1 + 2 = 3`  during the first iteration and then `3 + 3 = 6`  during the next iteration, and so on).
 
@@ -678,7 +678,7 @@ const doublesSum = numbers.reduce(function (accumulator, number) {
 
 ```
 
-Here's a  [Code Pen Demo][22].
+[代码演示][22]在此.
 
 Here, we’re multiplying each element of the array by 2. We have provided an  `initialValue`  of 10 to the  `accumulator`  so 10 will be added to the final result of the sum like this:
 
@@ -700,19 +700,19 @@ const sum = coordinates.reduce(function (accumulator, currentValue) {
 
 ```
 
-Here's a  [Code Pen Demo][23].
+[代码演示][23]在此.
 
-### Advantages of using the reduce method
+### 使用reduce方法的优势
 
 -   Using  `reduce`  allows us to generate any type of simple or complex data based on the array
 -   It remembers the previously returns data from the loop so helps us avoid creating a global variable to store the previous value
 
-**Browser Support:**
+**浏览器支持：**
 
--   All modern browsers and Internet Explorer (IE) version 9 and above
--   Microsoft Edge version 12 and above
+-   所有主流浏览器和版本9及以上的IE浏览器
+-   版本12及以上的Microsoft Edge浏览器
 
-### Thanks for reading!
+### 感谢阅读！
 
 Want to learn all ES6+ features in detail including  `let`  and  `const`, promises, various promise methods, array and object destructuring, arrow functions, async/await, import and export and a whole lot more?
 
