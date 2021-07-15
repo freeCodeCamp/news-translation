@@ -1,41 +1,71 @@
 > -   原文地址：[Why You Need to Understand Software Requirements as a Software Engineer 你以为软件工程师就是写代码的吗？深入理解软件需求很重要！](https://www.freecodecamp.org/news/build-a-simple-json-api-in-python/)
 > -   原文作者：Greg Byrne
-> -   译者：
+> -   译者：thirteens
 > -   校对者：
 
 ![Why You Need to Understand Software Requirements as a Software Engineer](https://www.freecodecamp.org/news/content/images/size/w2000/2020/04/understanding-software-requirements.jpg)
 
 In this article, you'll learn all about Software Requirements. You'll get an outline on the topic area, the process, and most importantly what your responsibilities are in this area as a software engineer.
 
+在本文中，您将了解有关软件需求的所有信息。您将获得有关主题领域，过程的概述，最重要的是，您作为软件工程师在该领域的职责是什么。
+
 You should gain some insight into your role and activities with software requirements. If anything, you'll have something to discuss with colleagues after your next stand-up 😃
 
 This article borrows heavily from the tome that is the [IEEE SWEBOK guide][1]. It attempts to distill some of that knowledge, re-purposing it more concisely. In case your wondering, SWEBOK is an acronym for the Software Engineering Body of Knowledge which is maintained by the IEEE Computer Society.
 
+本文从《IEEE SWEBOK指南》中借鉴了大量内容，试图更加简洁地提炼其中的某些知识。 如果您想知道，SWEBOK是由IEEE计算机协会维护的软件工程知识体系的缩写。
+
 ## Upfront, Why is this important
+
+## 前言，为什么说软件需求很重要
 
 There is a misconception from those not in software engineering that the role of a software engineer is to just "write code."
 
+对于那些不在软件工程领域的人来说有一个误解，即软件工程师的角色仅仅是“编写代码”。
+
 Yes, we're technologists who generally love learning programming. In reality, this is a simplistic view that under-values what a software engineer professional actually does in their day-to-day job and career. It focuses only on a slice of their overall responsibilities.
+
+是的，我们技术人员通常喜欢学习编程。但事实上这是一个简单的看法，它仅侧重于他们的整体责任，低估了软件工程师专业人员在日常工作和职业中所面临的实际工作。
 
 A software engineer's role is to build business solutions at enterprise scale. This includes a large number of responsibilities that aren't related to the code they create.
 
+软件工程师的职责是在企业范围内构建业务解决方案，这包括大量与他们创建的代码无关的职责。
+
 One area of responsibility you have as a professional software engineer is the area of software requirements.
+
+作为一名专业软件工程师，您要承担的责任之一就是了解软件需求。
 
 ## What are Software Requirements
 
+## 什么是软件需求
+
 Software Requirements on the surface sound simple. The software must do X for Y so that Z. Think about it for long enough on any problem that software could solve (or about existing software already solving a problem) and you could probably brainstorm a large number of requirements. Easy right?
+
+表面上的软件需求听起来很简单，该软件必须将X代为Y，以便Z。对于软件可以解决的任何问题（或已解决问题的现有软件）考虑足够长的时间，您可能会头脑风暴出大量的需求，这还容易吗？
 
 Well no, in fact, for most enterprise software.
 
+事实上，对于大多数企业软件而言答案都是否定的。
+
 _How are you gathering your requirements? Are you considering the stakeholders needs and priorities? Is this really a requirement for users of the software? Are there technical limitations of considerations? How do you know when it's done? Does the requirement implementation satisfy a set criterion? And so on..._
+
+您如何收集需求？您有考虑到利益相关者的需求和优先事项吗？这是该软件用户的一个真实需求吗？技术限制相关事项有考虑到吗？你怎么知道什么时候能完成？需求实现是否满足设定的标准？等等有一系列要考虑的问题......
 
 When you start drilling into the idea of Software Requirements, you find that they hide a large and deeper knowledge area.
 
+当您开始深入了解软件需求的思想时，您会发现那里隐藏了一个更大更深的知识领域。
+
 How deep and large a knowledge area? SWEBOK defines the area of Software Requirements as being "_concerned with the elicitation, analysis, specification, and validation of software requirements as well as the management of requirements during the whole life cycle of the software product._"
+
+有多大多深呢？SWEBOK将软件需求领域定义为“关注软件需求的启发，分析，规范和验证以及软件产品整个生命周期中的需求管理。”
 
 The size of this area, such as the number of activities and how involved each can be, gave enough credence to devote a branch of engineering known as "_requirements engineering_" solely focused on the requirements process.
 
+该领域的规模，例如活动的数量以及每项活动的参与程度，给了足够的重视，可以专门研究一个工程分支，称为“需求工程”，专门针对需求过程。
+
 Certain organizations may hire specifically for the role of a requirements engineer. You may see this more often in really large organizations who provide system-level solutions, for example, where their proposed solutions to customer problems encompass a total solution of which the software is just a single component.
+
+某些组织可能会专门聘请需求工程师。在提供系统级解决方案的大型组织中，您可能会经常看到这种情况，例如，他们针对客户问题提出的解决方案包括一个整体解决方案，而该解决方案仅是软件的单个组件。
 
 More typically, organizations tend to share requirements engineering responsibility through activities assigned amongst the various other project roles, like designers, business analysts, product owners, offering or client management, technical writers, software architects/engineers, and so on.
 
